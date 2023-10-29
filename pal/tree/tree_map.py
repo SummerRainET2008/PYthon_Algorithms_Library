@@ -2,7 +2,7 @@
 #coding: utf8
 
 import collections
-from palframe.alg.linked_list import LinkedList, ListNode
+from pal.list.linked_list import LinkedList, ListNode
 
 class _AVLTreeNode:
   def __init__(self, key: int):

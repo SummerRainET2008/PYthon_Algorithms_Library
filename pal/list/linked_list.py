@@ -69,30 +69,3 @@ class LinkedList:
     nd2._prev = nd2._next = None
     self._num -= 1
 
-def main():
-  mylist = LinkedList()
-  mylist.push_back(1)
-  mylist.push_back(2)
-  mylist.push_back(3)
-  mylist.push_back(4)
-
-  pos = mylist.begin()
-  while pos is not mylist.end():
-    print(mylist.size(), pos.content)
-    if pos.content == 3:
-      old_pos = pos
-      pos = pos.next()
-      mylist.remove(old_pos)
-    else:
-      pos = pos.next()
-
-  print("\n")
-  mylist.pop_back()
-  pos = mylist.rbegin()
-  while pos is not mylist.rend():
-    print(mylist.size(), pos.content)
-    pos = pos.prev()
-
-
-if __name__ == "__main__":
-  main()

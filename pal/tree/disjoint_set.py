@@ -1,5 +1,4 @@
 #coding: utf8
-#author: Tian Xia
 
 class DisjointSet:
   def __init__(self, n):
