@@ -8,7 +8,7 @@ class MinHeap:
     self._data = []
 
   def size(self):
-    return len(self._data) - 1
+    return len(self._data)
 
   def top(self):
     assert self.size() > 0
