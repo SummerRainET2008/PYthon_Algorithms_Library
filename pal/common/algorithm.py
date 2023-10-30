@@ -108,7 +108,6 @@ def group_by_key_fun(data, key_fun=None):
   return result
 
 
-
 def top_k(data: list, k: int, type="max", to_sort=False,
           data_key_func=lambda d: d):
   import heapq
@@ -138,3 +137,54 @@ def top_k(data: list, k: int, type="max", to_sort=False,
     return top_k_largest(key_func)
   else:
     assert type in ["min", "max"]
+
+def clamp(value, min_value, max_value):
+  return min(max(value, min_value), max_value)
+
+def argmax(data: list):
+  if len(data) == 0:
+    return -1
+
+  opt_pos = 0
+  for p in range(1, len(data)):
+    if data[p] < data[opt_pos]:
+      opt_pos = p
+
+  return opt_pos
+
+def make_nd_list(shape: tuple, init_value):
+  assert len(shape) > 0
+
+  if len(shape) == 1:
+    return [init_value for _ in range(shape[0])]
+
+  return [make_nd_list(shape[1:]) for _ in range(shape[0])]
+
+def remove_if(data: list, cond):
+  pass
+
+def replace_if(data: list, cond):
+  pass
+
+def swap(data: list, index1, index2):
+  if index1 != index2:
+    data[index1], data[index2] = data[index2], data[index1]
+
+def rotate(data: list, middle: int, first=0, last=None):
+  pass
+
+def nth_element(data: list, n_th: int, first=0, last=None):
+  pass
+
+def lower_bound(data: list, first: int, last: int):
+  pass
+
+def upper_bound(data: list, first: int, last: int):
+  pass
+
+def next_permutation(data: list):
+  pass
+
+def prev_permutation(data: list):
+  pass
+
