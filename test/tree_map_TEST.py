@@ -20,18 +20,20 @@ def test_tree_construction():
 def test_lower_bound():
   tree = TreeMap()
   data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  random.shuffle(data)
-  for d in data:
+  test_data = data[::]
+  random.shuffle(test_data)
+  for d in test_data:
     tree.set(d, d)
 
-  lower_node = tree.lower_bound(4.5)
-  print(f"lower_bound(4.5)={lower_node()}")
-  assert lower_node() == 5
+  for p in range(len(data)):
+    lower_node = tree.lower_bound(data[p] + 0.1)
+    if p == len(data) - 1:
+      assert lower_node is None
+    else:
+      assert lower_node() == data[p + 1]
 
-  lower_node = lower_node.next()
-  print(f"lower_bound(5)={lower_node()}")
-  assert lower_node() == 6
-
+    lower_node = tree.lower_bound(data[p] - 0.1)
+    assert lower_node() == data[p]
 
 if __name__ == '__main__':
   nose.run(defaultTest=__name__)

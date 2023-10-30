@@ -48,16 +48,18 @@ class _AVLTreeNode:
       assert abs(ld - rd) < 2
       return max(ld, rd) + 1
 
-  def _find_lower_bound(self, key, bound: list):
+  def _find_lower_bound(self, key):
     if key == self._key:
-      bound[0] = key
+      return self
     elif key < self._key:
-      bound[0] = self._key
       if self._left is not None:
-        self._left._find_lower_bound(key, bound)
+        node = self._left._find_lower_bound(key)
+        return self if node is None else node
+      return self
     else:
       if self._right is not None:
-        self._right._find_lower_bound(key, bound)
+        return self._right._find_lower_bound(key)
+      return None
 
   def _insert(self, key, next_key: list, from_left: bool):
     assert key != self._key
@@ -151,6 +153,10 @@ class _AVLTreeNode:
 
     return right
 
+  def _remove(self, key):
+    node = self._find_lower_bound(key)
+    pass
+
 class TreeMap:
   def __init__(self):
     self._root = None
@@ -182,6 +188,9 @@ class TreeMap:
       yield key, value
       node = node.prev()
 
+  def key_list_begin(self):
+    return self._key_list.begin()
+
   def key_list_end(self):
     return self._key_list.end()
 
@@ -189,16 +198,24 @@ class TreeMap:
     if self._root is None:
       return None
 
-    bound = [None]
-    self._root._find_lower_bound(key, bound)
-    if bound[0] is None:
+    node = self._root._find_lower_bound(key)
+    if node is None:
       return self._key_list.end()
 
-    return self._key2info[bound[0]]["key_list_node"]
+    return self._key2info[node._key]["key_list_node"]
 
   def get(self, key, default_value=None):
     info = self._key2info.get(key, None)
     return default_value if info is None else info["value"]
+
+  def remove(self, key):
+    info = self._key2info.get(key, None)
+    if info is None:
+      return
+
+    self._key_list.remove(info["key_list_node"])
+    del self._key2info[key]
+    self._root._remove(key)
 
   def set(self, key, value):
     rd = self._key2info.get(key, None)
