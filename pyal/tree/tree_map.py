@@ -228,18 +228,3 @@ class TreeMap:
         "key": key, "value": value, "key_list_node": next_node.prev()
       }
 
-def main():
-  tree_map = TreeMap()
-  # data = [32, 294, 280, 603, 927]
-  # data = [130, 819, 180, 252, 831, 100, 9, 0, 102, 10, 34, 76, 12, 98, 12]
-  data = [127, 645, 356, 789, 119, 718, 162, 667, 1012, 861, 511, 120, 130, 801, 689, 657, 21, 224, 1014, 157, 228, 1022, 259, 415, 943, 827, 819, 103, 279, 529]
-
-  for d in data:
-    tree_map.set(d, d)
-    print(f"\nafter adding: {d}")
-    tree_map._debug()
-
-  print(f"depth: ", tree_map._root._debug_checked_depth())
-
-if __name__ == "__main__":
-  main()
