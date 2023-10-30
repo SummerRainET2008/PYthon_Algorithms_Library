@@ -160,7 +160,7 @@ class TreeMap:
   def size(self):
     return self._key_list.size()
 
-  def _debug(self):
+  def _print_tree(self):
     if self._root is None:
       print("null-tree")
     else:
@@ -197,7 +197,6 @@ class TreeMap:
     return self._key2info[bound[0]]["key_list_node"]
 
   def get(self, key, default_value=None):
-    # return self._key2info.get(self._hash(key), default_value)
     info = self._key2info.get(key, None)
     return default_value if info is None else info["value"]
 
