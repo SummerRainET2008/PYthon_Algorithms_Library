@@ -172,21 +172,15 @@ class TreeMap:
     else:
       self._root.print_tree()
 
-  def items(self):
+  def keys(self):
     node = self._key_list.begin()
     while node is not self._key_list.end():
-      key = node()
-      value = self._key2info[key]["value"]
-      yield key, value
+      yield node()
       node = node.next()
 
-  def reversed_items(self):
-    node = self._key_list.rbegin()
-    while node is not self._key_list.rend():
-      key = node()["key"]
-      value = self._key2info[key]["value"]
-      yield key, value
-      node = node.prev()
+  def items(self):
+    for key in self.keys():
+      yield key, self.get(key)
 
   def key_list_begin(self):
     return self._key_list.begin()

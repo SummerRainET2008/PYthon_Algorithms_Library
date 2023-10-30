@@ -28,12 +28,15 @@ def test_lower_bound():
   for p in range(len(data)):
     lower_node = tree.lower_bound(data[p] + 0.1)
     if p == len(data) - 1:
-      assert lower_node is None
+      assert lower_node is tree.key_list_end()
     else:
       assert lower_node() == data[p + 1]
 
     lower_node = tree.lower_bound(data[p] - 0.1)
     assert lower_node() == data[p]
+
+  keys = list(tree.keys())
+  assert keys == data
 
 if __name__ == '__main__':
   nose.run(defaultTest=__name__)
