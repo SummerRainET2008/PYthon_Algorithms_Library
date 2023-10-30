@@ -12,7 +12,7 @@ class _AVLTreeNode:
     self._depth = 1
     self._next_value = None
 
-  def print_tree(self):
+  def _print_tree(self):
     import nltk
     tree_expr = str(self)
     tree = nltk.Tree.fromstring(tree_expr)
@@ -170,7 +170,7 @@ class TreeMap:
     if self._root is None:
       print("null-tree")
     else:
-      self._root.print_tree()
+      self._root._print_tree()
 
   def keys(self):
     node = self._key_list.begin()
