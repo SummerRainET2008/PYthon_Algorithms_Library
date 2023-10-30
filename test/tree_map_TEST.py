@@ -1,4 +1,4 @@
-from pal.tree.tree_map import TreeMap
+from pyal.tree.tree_map import TreeMap
 import nose
 import random
 
@@ -7,6 +7,7 @@ def test_tree_construction():
   random.seed(0)
   for _ in range(10):
     data = list(range(50))
+    random.shuffle(data)
     print(f"test_tree_connstruction: {data=}")
     for d in data:
       tree.set(d, d)
