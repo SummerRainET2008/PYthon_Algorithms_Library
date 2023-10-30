@@ -157,6 +157,9 @@ class TreeMap:
     self._key_list = LinkedList()
     self._key2info = {} # {"key": ["value", "key_list_node"]}
 
+  def size(self):
+    return self._key_list.size()
+
   def _debug(self):
     if self._root is None:
       print("null-tree")
