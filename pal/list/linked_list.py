@@ -54,6 +54,9 @@ class LinkedList:
   def rend(self):
     return self._fake_head
 
+  def insert_element(self, pos_node: ListNode, e):
+    self.insert(pos_node, ListNode(e))
+
   def insert(self, pos_node: ListNode, node: ListNode):
     nd1, nd2, nd3 = pos_node._prev, node, pos_node
     nd1._next = nd2
