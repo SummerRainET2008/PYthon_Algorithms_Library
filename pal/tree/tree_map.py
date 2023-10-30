@@ -2,7 +2,7 @@
 #coding: utf8
 
 import collections
-from ..list.linked_list import LinkedList, ListNode
+from ..list.linked_list import LinkedList
 
 class _AVLTreeNode:
   def __init__(self, key: int):
@@ -11,6 +11,13 @@ class _AVLTreeNode:
     self._right = None
     self._depth = 1
     self._next_value = None
+
+  def print_tree(self):
+    import nltk
+    tree_expr = str(self)
+    tree = nltk.Tree.fromstring(tree_expr)
+    tree.pretty_print()
+    print()
 
   def __str__(self):
     if self._left is not None:
@@ -154,7 +161,7 @@ class TreeMap:
     if self._root is None:
       print("null-tree")
     else:
-      print(str(self._root))
+      self._root.print_tree()
 
   def items(self):
     node = self._key_list.begin()
@@ -205,14 +212,14 @@ class TreeMap:
       }
 
     else:
-      next_keyhash = [None]
-      self._root = self._root._insert(key, next_keyhash, True)
+      next_key = [None]
+      self._root = self._root._insert(key, next_key, True)
 
-      if next_keyhash[0] is None:
+      if next_key[0] is None:
         next_node = self._key_list.end()
       else:
-        next_node = self._key2info[next_keyhash[0]]["key_list_node"]
-      self._key_list.insert(next_node, ListNode(key))
+        next_node = self._key2info[next_key[0]]["key_list_node"]
+      self._key_list.insert_element(next_node, key)
 
       self._key2info[key] = {
         "key": key, "value": value, "key_list_node": next_node.prev()
