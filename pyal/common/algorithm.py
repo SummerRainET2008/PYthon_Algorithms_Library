@@ -1,7 +1,8 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
-
+import \
+  random
 import sys
 import typing
 
@@ -194,8 +195,45 @@ def copy_to(src_list: list, begin: int, end: int,
   size = end - begin
   tgt_List[tgt_begin: tgt_begin + size] = src_list[begin: end]
 
-def nth_element(data: list, n_th: int, begin=0, end=None):
-  pass
+def the_kth_element(data: list, k_th: int, begin=0, end=None):
+  end = len(data) if end is None else end
+  assert 0 <= k_th < end - begin
+
+  if end - begin == 1:
+    return
+
+  pos = random.randint(begin, end - 1)
+  swap(data, pos, begin)
+  pivot = data[begin]
+
+  p1, p2 = begin, end - 1
+  while p1 < p2:
+    while p1 < p2:
+      if not (pivot <= data[p2]):
+        swap(data, p1, p2)
+        p1 += 1
+        break
+      p2 -= 1
+    else:
+      break
+
+    while p1 < p2:
+      if not (data[p1] <= pivot):
+        swap(data, p1, p2)
+        p2 -= 1
+        break
+      p1 += 1
+    else:
+      break
+
+  middle = p1
+  status = cmp(middle - begin, k_th)
+  if status == 0:
+    return
+  elif status < 0:
+    the_kth_element(data, k_th - (middle - begin + 1), middle + 1, end)
+  else:
+    the_kth_element(data, k_th, begin, middle)
 
 def lower_bound(data: list, target, begin: int=0, end: int=None):
   import bisect

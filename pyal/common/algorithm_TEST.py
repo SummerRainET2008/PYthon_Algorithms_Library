@@ -45,3 +45,20 @@ def test_argmax():
 def test_make_new_list():
   data = make_new_list((2, 3, 4), None)
   assert len(data) == 2 and len(data[0]) == 3 and len(data[0][0]) == 4
+
+def test_the_kth_element():
+  import random
+  data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  random.shuffle(data)
+
+  the_kth_element(data, 0)
+  assert data[0] == 1
+
+  the_kth_element(data, 1)
+  assert data[1] == 2
+
+  the_kth_element(data, 2)
+  assert data[2] == 3
+
+  the_kth_element(data, 3)
+  assert data[3] == 4
