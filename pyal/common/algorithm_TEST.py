@@ -1,8 +1,6 @@
 '''
 >> nosetests -v --nocapture test/tree_map_TEST.py
 '''
-import \
-  itertools
 
 from pyal.common.algorithm import *
 

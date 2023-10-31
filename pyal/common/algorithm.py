@@ -1,8 +1,6 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
-import \
-  random
 import sys
 import typing
 import functools
@@ -255,11 +253,7 @@ def upper_bound(data: list, target, begin: int=0, end: int=None):
 
 def reverse_in_place(data: list, begin: int, end: int=None):
   end = len(data) if end is None else end
-  p1, p2 = begin, end - 1
-  while p1 < p2:
-    swap(data, p1, p2)
-    p1 += 1
-    p2 -= 1
+  data[begin: end] = data[begin: end][::-1]
 
 def next_permutation(data: list):
   if is_none_or_empty(data):
@@ -288,9 +282,6 @@ def factorial(n: int):
     return 1
   return n * factorial(n - 1)
 
-'''
-C(5, 3) = 5 * 4 * 3 / (3 * 2 * 1
-'''
 def combinatorial_number(n, k):
   if k > n - k:
     return combinatorial_number(n, n - k)
