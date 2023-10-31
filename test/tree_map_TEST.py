@@ -1,3 +1,7 @@
+'''
+>> nosetests -v --nocapture test/tree_map_TEST.py
+'''
+
 from pyal.tree.tree_map import TreeMap
 import nose
 import random
@@ -43,11 +47,45 @@ def test_one_remove():
   data = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10]
   for d in data:
     tree.set(d, d)
-
   tree._print_tree()
+
   tree.remove(5)
+  print(f"Removed 5")
+  tree._print_tree()
   node = tree.lower_bound(5)
   assert node() == 6
 
-if __name__ == '__main__':
-  nose.run(defaultTest=__name__)
+  tree.remove(1)
+  print(f"Removed 1")
+  tree._print_tree()
+  node = tree.lower_bound(0.1)
+  assert node() == 2
+
+  tree.remove(3)
+  print(f"Removed 3")
+  tree._print_tree()
+  node = tree.lower_bound(3.1)
+  assert node() == 4
+
+  tree.remove(4)
+  print(f"Removed 4")
+  tree._print_tree()
+  node = tree.lower_bound(4.1)
+  assert node() == 6
+
+def test_many_remove():
+  data = list(range(50))
+  data_random = data[::]
+  random.shuffle(data_random)
+  tree = TreeMap()
+  for d in data_random:
+    tree.set(d, d)
+
+  for pos, d in enumerate(data):
+    tree.remove(d)
+    lower_node = tree.lower_bound(d + 0.1)
+    if pos == len(data) - 1:
+      assert lower_node == tree.key_list_end()
+    else:
+      assert lower_node() == d + 1
+      print(d + 1, "OK")

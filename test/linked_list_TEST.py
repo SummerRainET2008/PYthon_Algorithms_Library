@@ -39,6 +39,3 @@ def test_insertion():
     iter = iter.prev()
 
   assert data == [0, 2, 3, 100, 4][::-1]
-
-if __name__ == '__main__':
-  nose.run(defaultTest=__name__)

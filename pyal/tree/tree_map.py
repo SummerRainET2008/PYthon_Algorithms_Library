@@ -217,7 +217,7 @@ class TreeMap:
 
   def lower_bound(self, key):   # return key_list node
     if self._root is None:
-      return None
+      return self.key_list_end()
 
     node = self._root._find_lower_bound(key)
     if node is None:
