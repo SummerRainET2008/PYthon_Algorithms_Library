@@ -1,6 +1,6 @@
 from .common.algorithm import *
-from .list.linked_list import LinkedList
 from .list.lfu_cache import LFUCache
+from .list.linked_list import LinkedList
 from .list.lru_cache import LRUCache
 from .list.queue import Queue
 from .list.stack import Stack
