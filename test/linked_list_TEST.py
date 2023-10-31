@@ -1,5 +1,4 @@
 from pyal.list.linked_list import LinkedList, ListNode
-import nose
 
 def test_list():
   list = LinkedList()

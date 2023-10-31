@@ -3,7 +3,6 @@
 '''
 
 from pyal.tree.tree_map import TreeMap
-import nose
 import random
 
 def test_tree_construction():
@@ -74,18 +73,18 @@ def test_one_remove():
   assert node() == 6
 
 def test_many_remove():
-  data = list(range(50))
-  data_random = data[::]
-  random.shuffle(data_random)
-  tree = TreeMap()
-  for d in data_random:
-    tree.set(d, d)
+  for _ in range(10):
+    data = list(range(50))
+    data_random = data[::]
+    random.shuffle(data_random)
+    tree = TreeMap()
+    for d in data_random:
+      tree.set(d, d)
 
-  for pos, d in enumerate(data):
-    tree.remove(d)
-    lower_node = tree.lower_bound(d + 0.1)
-    if pos == len(data) - 1:
-      assert lower_node == tree.key_list_end()
-    else:
-      assert lower_node() == d + 1
-      print(d + 1, "OK")
+    for pos, d in enumerate(data):
+      tree.remove(d)
+      lower_node = tree.lower_bound(d + 0.1)
+      if pos == len(data) - 1:
+        assert lower_node == tree.key_list_end()
+      else:
+        assert lower_node() == d + 1
