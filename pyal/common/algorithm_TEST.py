@@ -1,6 +1,9 @@
 '''
 >> nosetests -v --nocapture test/tree_map_TEST.py
 '''
+import \
+  itertools
+
 from pyal.common.algorithm import *
 
 def test_lower_bound():
@@ -91,3 +94,12 @@ def test_combination_permutation():
   assert permutation_number(5, 3) == 60
   assert permutation_number(5, 4) == 120
   assert permutation_number(5, 5) == 120
+
+def test_discrete_sample():
+  from collections import Counter
+  probs = [0.1, 0.2, 0.7]
+  sampled_poses = [discrete_sample(probs) for _ in range(10000)]
+  dist = Counter(sampled_poses)
+  freq_ratio = dist[2] / dist[0]
+  print(freq_ratio)
+  assert freq_ratio > 6

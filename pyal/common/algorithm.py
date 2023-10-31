@@ -1,6 +1,8 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
+import \
+  random
 import sys
 import typing
 import functools
@@ -91,10 +93,16 @@ def eq(v1, v2, prec=EPSILON):
   return abs(v1 - v2) < prec
 
 
-def discrete_sample(dists: list) -> int:
+def discrete_sample(probs: list) -> int:
   '''each probability must be greater than 0'''
-  pass
-
+  from itertools import accumulate
+  import random
+  aprobs = list(accumulate(probs))
+  assert eq(aprobs[-1], 1.0)
+  rand_prob = random.random()
+  for pos, prob in enumerate(aprobs):
+    if rand_prob <= prob:
+      return pos
 
 def group_by_key_fun(data, key_fun=None):
   import collections
