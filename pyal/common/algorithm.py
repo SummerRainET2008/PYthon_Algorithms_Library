@@ -1,5 +1,6 @@
-#coding: utf8
-#author: Tian Xia
+'''
+Author: Tian Xia (TianXia0209@gmail.com)
+'''
 
 import sys
 import typing

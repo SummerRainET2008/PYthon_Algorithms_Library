@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+'''
+Author: Tian Xia (TianXia0209@gmail.com)
+'''
 
 import collections
 from .linked_list import ListNode, LinkedList

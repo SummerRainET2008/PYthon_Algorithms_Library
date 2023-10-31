@@ -1,3 +1,7 @@
+'''
+Author: Tian Xia (TianXia0209@gmail.com)
+'''
+
 from .linked_list import ListNode, LinkedList
 
 debug = False

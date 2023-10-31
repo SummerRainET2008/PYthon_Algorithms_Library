@@ -1,3 +1,7 @@
+'''
+Author: Tian Xia (TianXia0209@gmail.com)
+'''
+
 class ListNode:
   def __init__(self, content):
     self._prev = None

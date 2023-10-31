@@ -1,7 +1,8 @@
-#!/usr/bin/env python
-#coding: utf8
+'''
+Author: Tian Xia (TianXia0209@gmail.com)
+'''
 
-import collections
+
 from ..list.linked_list import LinkedList
 
 class _AVLTreeNode:
