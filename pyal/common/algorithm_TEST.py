@@ -35,8 +35,8 @@ def test_top_k():
   import random
   data = [1, 2, 3, 4, 5, 6, 7]
   random.shuffle(data)
-  assert top_k(data, 3, "max", to_sort=True) == [7, 6, 5]
-  assert top_k(data, 3, "min", to_sort=True) == [1, 2, 3]
+  assert top_n(data, 3, "max", to_sort=True) == [7, 6, 5]
+  assert top_n(data, 3, "min", to_sort=True) == [1, 2, 3]
 
 def test_argmax():
   data = [1, 2, 3, 4, 5, 6, 7]
@@ -52,16 +52,16 @@ def test_the_kth_element():
   data = [1, 2, 3, 4, 5, 6]
   random.shuffle(data)
 
-  the_kth_element(data, 0)
+  kth_smallest_element(data, 0)
   assert data[0] == 1
 
-  the_kth_element(data, 1)
+  kth_smallest_element(data, 1)
   assert data[1] == 2
 
-  the_kth_element(data, 2)
+  kth_smallest_element(data, 2)
   assert data[2] == 3
 
-  the_kth_element(data, 3)
+  kth_smallest_element(data, 3)
   assert data[3] == 4
 
   for _ in range(factorial(len(data))):
@@ -101,3 +101,16 @@ def test_discrete_sample():
   freq_ratio = dist[2] / dist[0]
   print(freq_ratio)
   assert freq_ratio > 6
+
+def test_top_k():
+  import random
+  data = [1, 2, 3, 4, 5, 6]
+  random.shuffle(data)
+
+  ans = top_n(data, 3, type="min", to_sort=True)
+  assert ans == [1, 2, 3]
+
+  ans = top_n(data, 3, type="max", to_sort=True)
+  assert ans == [6, 5, 4]
+
+

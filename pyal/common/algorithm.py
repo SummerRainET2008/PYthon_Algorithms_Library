@@ -117,35 +117,22 @@ def group_by_key_fun(data, key_fun=None):
   return result
 
 
-def top_k(data: list, k: int, type="max", to_sort=False,
+def top_n(data: list, n_num: int, type="max", to_sort=False,
           data_key_func=lambda d: d):
-  import heapq
+  assert type in ["min", "max"]
+  assert 1 <= n_num <= len(data)
 
-  def top_k_largest(key_func):
-    if len(data) <= k:
-      return data
-
-    min_heap = []
-    for d in data:
-      key = key_func(d)
-      if len(min_heap) < k:
-        heapq.heappush(min_heap, (key, d))
-      elif key > min_heap[0][0]:
-        heapq.heappop(min_heap)
-        heapq.heappush(min_heap, (key, d))
-
-    if to_sort:
-      min_heap.sort(reverse=True)
-
-    return [d for _, d in min_heap]
-
+  data = [(data_key_func(d), d) for d in data]
   if type == "max":
-    return top_k_largest(data_key_func)
-  elif type == "min":
-    key_func = lambda item: -data_key_func(item)
-    return top_k_largest(key_func)
+    k_th = len(data) - n_num - 1
+    kth_smallest_element(data, k_th)
+    ans = [v for _, v in data[k_th + 1:]]
+    return sorted(ans, reverse=True) if to_sort else ans
   else:
-    assert type in ["min", "max"]
+    k_th = n_num - 1
+    kth_smallest_element(data, k_th)
+    ans = [v for _, v in data[: k_th + 1]]
+    return sorted(ans, reverse=False) if to_sort else ans
 
 def clamp(value, min_value, max_value):
   return min(max(value, min_value), max_value)
@@ -200,7 +187,7 @@ def copy_to(src_list: list, begin: int, end: int,
   size = end - begin
   tgt_List[tgt_begin: tgt_begin + size] = src_list[begin: end]
 
-def the_kth_element(data: list, k_th: int, begin=0, end=None):
+def kth_smallest_element(data: list, k_th: int, begin=0, end=None):
   import random
   end = len(data) if end is None else end
   assert 0 <= k_th < end - begin
@@ -237,9 +224,9 @@ def the_kth_element(data: list, k_th: int, begin=0, end=None):
   if status == 0:
     return
   elif status < 0:
-    the_kth_element(data, k_th - (middle - begin + 1), middle + 1, end)
+    kth_smallest_element(data, k_th - (middle - begin + 1), middle + 1, end)
   else:
-    the_kth_element(data, k_th, begin, middle)
+    kth_smallest_element(data, k_th, begin, middle)
 
 def lower_bound(data: list, target, begin: int=0, end: int=None):
   import bisect
