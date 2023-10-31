@@ -4,6 +4,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 
 import heapq
 
+
 class MinHeap:
   def __init__(self):
     self._data = []

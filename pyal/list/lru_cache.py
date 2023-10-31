@@ -5,9 +5,11 @@ Author: Tian Xia (TianXia0209@gmail.com)
 import collections
 from .linked_list import LinkedList
 
+
 class Item(collections.namedtuple("Item", ["key", "value"])):
   def update(self, value):
     return self._replace(value=value)
+
 
 class LRUCache:
   def __init__(self, capacity: int):
@@ -40,4 +42,3 @@ class LRUCache:
     if node is not self._list.begin():
       self._list.remove(node)
       self._list.insert(self._list.begin(), node)
-

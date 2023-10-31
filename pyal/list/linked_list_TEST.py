@@ -1,5 +1,6 @@
 from pyal.list.linked_list import LinkedList, ListNode
 
+
 def test_list():
   list = LinkedList()
   list.push_front(1)
@@ -9,6 +10,7 @@ def test_list():
   assert list.rbegin()() == 2
 
   assert list.size() == 2
+
 
 def test_insertion():
   list = LinkedList()

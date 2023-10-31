@@ -7,10 +7,12 @@ from .linked_list import ListNode, LinkedList
 debug = False
 # debug = True
 
+
 class MainValue:
   def __init__(self, freq):
     self.list = LinkedList()
     self.freq = freq
+
 
 class AuxValue:
   def __init__(self, key, value, freq, main_node):
@@ -18,6 +20,7 @@ class AuxValue:
     self.value = value
     self.freq = freq
     self.main_node = main_node
+
 
 class LFUCache:
   def __init__(self, capacity: int):
@@ -82,4 +85,3 @@ class LFUCache:
       auxnode_value = AuxValue(key, value, 1, last_mainnode)
       last_mainnode().list.push_front(auxnode_value)
       self._key2aux_node[key] = last_mainnode().list.begin()
-

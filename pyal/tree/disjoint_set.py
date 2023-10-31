@@ -2,6 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
+
 class DisjointSet:
   def __init__(self, n):
     self._fathers = {}

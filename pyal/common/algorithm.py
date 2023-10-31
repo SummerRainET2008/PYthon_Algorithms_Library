@@ -8,6 +8,7 @@ import functools
 INF = float("inf")
 EPSILON = 1e-6
 
+
 def is_none_or_empty(data) -> bool:
   '''This applies to any data type which has a __len__ method'''
   if data is None:
@@ -17,6 +18,7 @@ def is_none_or_empty(data) -> bool:
     return len(data) == 0
   except:
     return False
+
 
 def histogram_ascii(points, out_file=sys.stdout) -> None:
   from collections import Counter
@@ -46,7 +48,7 @@ def histogram_ascii(points, out_file=sys.stdout) -> None:
   print(file=out_file)
 
 
-def is_sorted(data: list, strict: bool=False):
+def is_sorted(data: list, strict: bool = False):
   if len(data) == 0:
     return True
 
@@ -58,6 +60,7 @@ def is_sorted(data: list, strict: bool=False):
       return False
 
   return True
+
 
 def unique(data: list):
   '''
@@ -71,6 +74,7 @@ def unique(data: list):
         prev = d
 
   return list(run())
+
 
 def cmp(a, b) -> int:
   return (a > b) - (a < b)
@@ -102,6 +106,7 @@ def discrete_sample(probs: list) -> int:
     if rand_prob <= prob:
       return pos
 
+
 def group_by_key_fun(data, key_fun=None):
   import collections
   '''
@@ -117,7 +122,10 @@ def group_by_key_fun(data, key_fun=None):
   return result
 
 
-def top_n(data: list, n_num: int, type="max", to_sort=False,
+def top_n(data: list,
+          n_num: int,
+          type="max",
+          to_sort=False,
           data_key_func=lambda d: d):
   assert type in ["min", "max"]
   assert 1 <= n_num <= len(data)
@@ -131,11 +139,13 @@ def top_n(data: list, n_num: int, type="max", to_sort=False,
   else:
     k_th = n_num - 1
     kth_smallest_element(data, k_th)
-    ans = [v for _, v in data[: k_th + 1]]
+    ans = [v for _, v in data[:k_th + 1]]
     return sorted(ans, reverse=False) if to_sort else ans
+
 
 def clamp(value, min_value, max_value):
   return min(max(value, min_value), max_value)
+
 
 def argmax(data: list):
   if len(data) == 0:
@@ -148,6 +158,7 @@ def argmax(data: list):
 
   return opt_pos
 
+
 def argmin(data: list):
   if len(data) == 0:
     return -1
@@ -159,6 +170,7 @@ def argmin(data: list):
 
   return opt_pos
 
+
 def make_new_list(shape: tuple, init_value):
   assert len(shape) > 0
 
@@ -167,11 +179,13 @@ def make_new_list(shape: tuple, init_value):
 
   return [make_new_list(shape[1:], init_value) for _ in range(shape[0])]
 
+
 def swap(data: list, index1, index2):
   if index1 != index2:
     data[index1], data[index2] = data[index2], data[index1]
 
-def rotate(data: list, middle: int, begin: int=0, end: int=None):
+
+def rotate(data: list, middle: int, begin: int = 0, end: int = None):
   '''
   :return: new list
   '''
@@ -180,12 +194,14 @@ def rotate(data: list, middle: int, begin: int=0, end: int=None):
 
   if middle == begin:
     return data[::]
-  return data[: begin] + data[middle: end] + data[begin: middle]
+  return data[:begin] + data[middle:end] + data[begin:middle]
 
-def copy_to(src_list: list, begin: int, end: int,
-            tgt_List: list, tgt_begin: int):
+
+def copy_to(src_list: list, begin: int, end: int, tgt_List: list,
+            tgt_begin: int):
   size = end - begin
-  tgt_List[tgt_begin: tgt_begin + size] = src_list[begin: end]
+  tgt_List[tgt_begin:tgt_begin + size] = src_list[begin:end]
+
 
 def kth_smallest_element(data: list, k_th: int, begin=0, end=None):
   import random
@@ -228,19 +244,23 @@ def kth_smallest_element(data: list, k_th: int, begin=0, end=None):
   else:
     kth_smallest_element(data, k_th, begin, middle)
 
-def lower_bound(data: list, target, begin: int=0, end: int=None):
-  import bisect
-  return bisect.bisect_left(
-    data, target, begin, len(data) if end is None else end)
 
-def upper_bound(data: list, target, begin: int=0, end: int=None):
+def lower_bound(data: list, target, begin: int = 0, end: int = None):
   import bisect
-  return bisect.bisect_right(
-    data, target, begin, len(data) if end is None else end)
+  return bisect.bisect_left(data, target, begin,
+                            len(data) if end is None else end)
 
-def reverse_in_place(data: list, begin: int, end: int=None):
+
+def upper_bound(data: list, target, begin: int = 0, end: int = None):
+  import bisect
+  return bisect.bisect_right(data, target, begin,
+                             len(data) if end is None else end)
+
+
+def reverse_in_place(data: list, begin: int, end: int = None):
   end = len(data) if end is None else end
-  data[begin: end] = data[begin: end][::-1]
+  data[begin:end] = data[begin:end][::-1]
+
 
 def next_permutation(data: list):
   if is_none_or_empty(data):
@@ -260,14 +280,17 @@ def next_permutation(data: list):
 
   return data
 
+
 def prev_permutation(data: list):
   pass
+
 
 @functools.cache
 def factorial(n: int):
   if n <= 1:
     return 1
   return n * factorial(n - 1)
+
 
 def combinatorial_number(n, k):
   if k > n - k:
@@ -278,6 +301,7 @@ def combinatorial_number(n, k):
     ans *= (n - p) // (p + 1)
 
   return ans
+
 
 def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)

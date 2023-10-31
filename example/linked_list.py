@@ -1,11 +1,13 @@
 import pyal
 
+
 def display_list(list: pyal.LinkedList):
   iter = list.begin()
   while iter is not list.end():
     print(iter(), end=" ")
     iter = iter.next()
   print()
+
 
 def main():
   list = pyal.LinkedList()
@@ -22,7 +24,7 @@ def main():
         f"the first element becomes {iter()}")
 
   last_element = list.pop_back()
-  print(f"The last element '{last_element}' is removed")       # 4
+  print(f"The last element '{last_element}' is removed")  # 4
 
   list.insert_element(list.rbegin(), 0)
   print(f"Insert 0 before the last element")
@@ -32,6 +34,7 @@ def main():
   print(f"The last element is {iter()}")
   iter = iter.prev()
   print(f"The element before the last element is {iter()}")
+
 
 if __name__ == "__main__":
   main()

@@ -4,6 +4,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 
 from ..list.linked_list import LinkedList
 
+
 class _AVLTreeNode:
   def __init__(self, key: int):
     self._key = key
@@ -137,8 +138,8 @@ class _AVLTreeNode:
     return 0 if node is None else node._depth
 
   def _reset_depth(self):
-    self._depth = max(self._get_depth(self._left),
-                      self._get_depth(self._right)) + 1
+    self._depth = max(self._get_depth(self._left), self._get_depth(
+        self._right)) + 1
 
   def _left_rotate(self):
     bf = self._get_balance_factor()
@@ -177,7 +178,7 @@ class _AVLTreeNode:
         left_right_list[-1]._right = self._right._left
         while left_right_list != []:
           left_right_list[-1]._right = _AVLTreeNode._reset_balance(
-            left_right_list[-1]._right, False)
+              left_right_list[-1]._right, False)
           left_right_list.pop()
 
         self._right._left = self._left
@@ -188,7 +189,7 @@ class TreeMap:
   def __init__(self):
     self._root = None
     self._key_list = LinkedList()
-    self._key2info = {} # {"key": ["value", "key_list_node"]}
+    self._key2info = {}  # {"key": ["value", "key_list_node"]}
 
   def size(self):
     return self._key_list.size()
@@ -215,7 +216,7 @@ class TreeMap:
   def key_list_end(self):
     return self._key_list.end()
 
-  def lower_bound(self, key):   # return key_list node
+  def lower_bound(self, key):  # return key_list node
     if self._root is None:
       return self.key_list_end()
 
@@ -248,7 +249,9 @@ class TreeMap:
       self._root = _AVLTreeNode(key)
       self._key_list.push_back(key)
       self._key2info[key] = {
-        "key": key, "value": value, "key_list_node": self._key_list.rbegin()
+          "key": key,
+          "value": value,
+          "key_list_node": self._key_list.rbegin()
       }
 
     else:
@@ -262,6 +265,7 @@ class TreeMap:
       self._key_list.insert_element(next_node, key)
 
       self._key2info[key] = {
-        "key": key, "value": value, "key_list_node": next_node.prev()
+          "key": key,
+          "value": value,
+          "key_list_node": next_node.prev()
       }
-

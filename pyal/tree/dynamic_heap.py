@@ -4,6 +4,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 
 import collections
 
+
 # Min-heap
 class DynamicHeap:
   '''
@@ -121,6 +122,7 @@ class DynamicHeap:
 
     self.__adjust_up_to_bottom(s)
 
+
 def case_1():
   heap = DynamicHeap()
   heap.push(0, 10)
@@ -154,9 +156,11 @@ def case_1():
     print(heap.top())
     heap.pop()
 
+
 def main():
   case_1()
   # test_2()
+
 
 if __name__ == "__main__":
   main()

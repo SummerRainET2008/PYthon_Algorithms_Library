@@ -5,6 +5,7 @@
 from pyal.tree.tree_map import TreeMap
 import random
 
+
 def test_tree_construction():
   tree = TreeMap()
   random.seed(0)
@@ -20,6 +21,7 @@ def test_tree_construction():
     tree.set(0, 100)
     assert tree.get(0) == 100
 
+
 def test_extreme_construction():
   tree = TreeMap()
   max_size = 10_000
@@ -27,6 +29,7 @@ def test_extreme_construction():
     tree.set(d, d)
   # tree._print_tree()
   assert tree.size() == max_size
+
 
 def test_lower_bound():
   tree = TreeMap()
@@ -48,6 +51,7 @@ def test_lower_bound():
 
   keys = list(tree.keys())
   assert keys == data
+
 
 def test_one_remove():
   tree = TreeMap()
@@ -79,6 +83,7 @@ def test_one_remove():
   tree._print_tree()
   node = tree.lower_bound(4.1)
   assert node() == 6
+
 
 def test_many_remove():
   for _ in range(10):

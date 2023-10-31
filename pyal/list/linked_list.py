@@ -2,6 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
+
 class ListNode:
   def __init__(self, content):
     self._prev = None
@@ -16,6 +17,7 @@ class ListNode:
 
   def __call__(self):
     return self.content
+
 
 class LinkedList:
   def __init__(self):
@@ -75,4 +77,3 @@ class LinkedList:
     nd3._prev = nd1
     nd2._prev = nd2._next = None
     self._num -= 1
-
