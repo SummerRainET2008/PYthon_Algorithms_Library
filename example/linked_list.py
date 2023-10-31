@@ -22,11 +22,16 @@ def main():
         f"the first element becomes {iter()}")
 
   last_element = list.pop_back()
-  print(f"The last element is {last_element}")       # 4
+  print(f"The last element '{last_element}' is removed")       # 4
 
   list.insert_element(list.rbegin(), 0)
   print(f"Insert 0 before the last element")
   display_list(list)
+
+  iter = list.rbegin()
+  print(f"The last element is {iter()}")
+  iter = iter.prev()
+  print(f"The element before the last element is {iter()}")
 
 if __name__ == "__main__":
   main()
