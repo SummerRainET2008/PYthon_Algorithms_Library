@@ -48,7 +48,7 @@ def test_make_new_list():
 
 def test_the_kth_element():
   import random
-  data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  data = [1, 2, 3, 4, 5, 6]
   random.shuffle(data)
 
   the_kth_element(data, 0)
@@ -62,3 +62,32 @@ def test_the_kth_element():
 
   the_kth_element(data, 3)
   assert data[3] == 4
+
+  for _ in range(factorial(len(data))):
+    data = next_permutation(data)
+    # print(data)
+
+  assert data == [1, 2, 3, 4, 5, 6]
+
+def test_next_permutation():
+  data = [1, 2, 3, 4, 5, 6]
+
+  data1 = next_permutation(data)
+  assert data1 == [1, 2, 3, 4, 6, 5]
+
+  data2 = next_permutation(data1)
+  assert data2 == [1, 2, 3, 5, 4, 6]
+
+def test_combination_permutation():
+  assert combinatorial_number(5, 0) == 1
+  assert combinatorial_number(5, 1) == 5
+  assert combinatorial_number(5, 2) == 10
+  assert combinatorial_number(5, 3) == 10
+  assert combinatorial_number(5, 4) == 5
+  assert combinatorial_number(5, 5) == 1
+
+  assert permutation_number(5, 1) == 5
+  assert permutation_number(5, 2) == 20
+  assert permutation_number(5, 3) == 60
+  assert permutation_number(5, 4) == 120
+  assert permutation_number(5, 5) == 120

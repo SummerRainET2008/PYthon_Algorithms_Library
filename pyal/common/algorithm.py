@@ -1,10 +1,9 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
-import \
-  random
 import sys
 import typing
+import functools
 
 INF = float("inf")
 EPSILON = 1e-6
@@ -196,6 +195,7 @@ def copy_to(src_list: list, begin: int, end: int,
   tgt_List[tgt_begin: tgt_begin + size] = src_list[begin: end]
 
 def the_kth_element(data: list, k_th: int, begin=0, end=None):
+  import random
   end = len(data) if end is None else end
   assert 0 <= k_th < end - begin
 
@@ -245,9 +245,53 @@ def upper_bound(data: list, target, begin: int=0, end: int=None):
   return bisect.bisect_right(
     data, target, begin, len(data) if end is None else end)
 
+def reverse_in_place(data: list, begin: int, end: int=None):
+  end = len(data) if end is None else end
+  p1, p2 = begin, end - 1
+  while p1 < p2:
+    swap(data, p1, p2)
+    p1 += 1
+    p2 -= 1
+
 def next_permutation(data: list):
-  pass
+  if is_none_or_empty(data):
+    return []
+
+  data = data[::]
+  p = len(data) - 2
+  while p >= 0 and data[p] >= data[p + 1]:
+    p -= 1
+
+  if p == -1:
+    return data[::-1]
+
+  reverse_in_place(data, p + 1, len(data))
+  pos = upper_bound(data, data[p], p + 1)
+  swap(data, p, pos)
+
+  return data
 
 def prev_permutation(data: list):
   pass
 
+@functools.cache
+def factorial(n: int):
+  if n <= 1:
+    return 1
+  return n * factorial(n - 1)
+
+'''
+C(5, 3) = 5 * 4 * 3 / (3 * 2 * 1
+'''
+def combinatorial_number(n, k):
+  if k > n - k:
+    return combinatorial_number(n, n - k)
+
+  ans = 1
+  for p in range(k):
+    ans *= (n - p) // (p + 1)
+
+  return ans
+
+def permutation_number(n, k):
+  return combinatorial_number(n, k) * factorial(k)
