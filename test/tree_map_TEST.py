@@ -20,6 +20,14 @@ def test_tree_construction():
     tree.set(0, 100)
     assert tree.get(0) == 100
 
+def test_extreme_construction():
+  tree = TreeMap()
+  max_size = 10_000
+  for d in range(max_size):
+    tree.set(d, d)
+  # tree._print_tree()
+  assert tree.size() == max_size
+
 def test_lower_bound():
   tree = TreeMap()
   data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
