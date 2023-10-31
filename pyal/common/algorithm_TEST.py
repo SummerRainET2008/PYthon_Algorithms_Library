@@ -41,3 +41,7 @@ def test_argmax():
   data = [1, 2, 3, 4, 5, 6, 7]
   assert data[argmax(data)] == 7
   assert data[argmin(data)] == 1
+
+def test_make_new_list():
+  data = make_new_list((2, 3, 4), None)
+  assert len(data) == 2 and len(data[0]) == 3 and len(data[0][0]) == 4

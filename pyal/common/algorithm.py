@@ -172,7 +172,7 @@ def make_new_list(shape: tuple, init_value):
   if len(shape) == 1:
     return [init_value for _ in range(shape[0])]
 
-  return [make_new_list(shape[1:]) for _ in range(shape[0])]
+  return [make_new_list(shape[1:], init_value) for _ in range(shape[0])]
 
 def swap(data: list, index1, index2):
   if index1 != index2:
