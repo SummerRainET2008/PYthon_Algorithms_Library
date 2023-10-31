@@ -18,7 +18,6 @@ def is_none_or_empty(data) -> bool:
   except:
     return False
 
-
 def histogram_ascii(points, out_file=sys.stdout) -> None:
   from collections import Counter
   import math
@@ -60,15 +59,18 @@ def is_sorted(data: list, strict: bool=False):
 
   return True
 
-def unique(data: list) -> typing.Iterator:
+def unique(data: list):
   '''
   :param data: must be sorted.
   '''
-  prev = None
-  for d in data:
-    if prev is None or d != prev:
-      yield d
-      prev = d
+  def run():
+    prev = None
+    for d in data:
+      if prev is None or d != prev:
+        yield d
+        prev = d
+
+  return list(run())
 
 def cmp(a, b) -> int:
   return (a > b) - (a < b)
@@ -148,40 +150,62 @@ def argmax(data: list):
 
   opt_pos = 0
   for p in range(1, len(data)):
+    if data[p] > data[opt_pos]:
+      opt_pos = p
+
+  return opt_pos
+
+def argmin(data: list):
+  if len(data) == 0:
+    return -1
+
+  opt_pos = 0
+  for p in range(1, len(data)):
     if data[p] < data[opt_pos]:
       opt_pos = p
 
   return opt_pos
 
-def make_nd_list(shape: tuple, init_value):
+def make_new_list(shape: tuple, init_value):
   assert len(shape) > 0
 
   if len(shape) == 1:
     return [init_value for _ in range(shape[0])]
 
-  return [make_nd_list(shape[1:]) for _ in range(shape[0])]
-
-def remove_if(data: list, cond):
-  pass
-
-def replace_if(data: list, cond):
-  pass
+  return [make_new_list(shape[1:]) for _ in range(shape[0])]
 
 def swap(data: list, index1, index2):
   if index1 != index2:
     data[index1], data[index2] = data[index2], data[index1]
 
-def rotate(data: list, middle: int, first=0, last=None):
+def rotate(data: list, middle: int, begin: int=0, end: int=None):
+  '''
+  :return: new list
+  '''
+  end = len(data) if end is None else end
+  assert begin <= middle < end
+
+  if middle == begin:
+    return data[::]
+  return data[: begin] + data[middle: end] + data[begin: middle]
+
+def copy_to(src_list: list, begin: int, end: int,
+            tgt_List: list, tgt_begin: int):
+  size = end - begin
+  tgt_List[tgt_begin: tgt_begin + size] = src_list[begin: end]
+
+def nth_element(data: list, n_th: int, begin=0, end=None):
   pass
 
-def nth_element(data: list, n_th: int, first=0, last=None):
-  pass
+def lower_bound(data: list, target, begin: int=0, end: int=None):
+  import bisect
+  return bisect.bisect_left(
+    data, target, begin, len(data) if end is None else end)
 
-def lower_bound(data: list, first: int, last: int):
-  pass
-
-def upper_bound(data: list, first: int, last: int):
-  pass
+def upper_bound(data: list, target, begin: int=0, end: int=None):
+  import bisect
+  return bisect.bisect_right(
+    data, target, begin, len(data) if end is None else end)
 
 def next_permutation(data: list):
   pass
