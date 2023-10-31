@@ -261,6 +261,27 @@ def reverse_in_place(data: list, begin: int, end: int = None):
   end = len(data) if end is None else end
   data[begin:end] = data[begin:end][::-1]
 
+def sort_in_place(data: list, reverse=False, begin: int=0, end: int=None):
+  end = len(data) if end is None else end
+  data[begin: end] = sorted(data[begin: end], reverse=reverse)
+
+def find_first_if(data: list, predicate, begin: int=0, end: int=None):
+  end = len(data) if end is None else end
+  p = begin
+  while p < end:
+    if predicate(data[p]):
+      return p
+    p += 1
+  return -1
+
+def find_last_if(data: list, predicate, begin: int=0, end: int=None):
+  end = len(data) if end is None else end
+  p = end - 1
+  while p >= begin:
+    if predicate(data[p]):
+      return p
+    p -= 1
+  return -1
 
 def next_permutation(data: list):
   if is_none_or_empty(data):
