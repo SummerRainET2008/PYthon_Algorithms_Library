@@ -153,8 +153,36 @@ class _AVLTreeNode:
 
     return right
 
-  def _remove(self):
-    pass
+  def _remove(self, key, from_left: bool):
+    # Key must be existent
+    if key < self._key:
+      self._left = self._left._remove(key, True)
+      return self
+    elif key > self._key:
+      self._right = self._right._remove(key, False)
+      return self
+
+    else:
+      if self._right is None:
+        return _AVLTreeNode._reset_balance(self._left, from_left)
+      elif self._left is None:
+        return _AVLTreeNode._reset_balance(self._right, from_left)
+      else:
+        left_right_list = []
+        node = self._left
+        while node is not None:
+          left_right_list.append(node)
+          node = node._right
+
+        left_right_list[-1]._right = self._right._left
+        while left_right_list != []:
+          left_right_list[-1]._right = _AVLTreeNode._reset_balance(
+            left_right_list[-1]._right, False)
+          left_right_list.pop()
+
+        self._right._left = self._left
+        return _AVLTreeNode._reset_balance(self._right, from_left)
+
 
 class TreeMap:
   def __init__(self):
@@ -208,8 +236,7 @@ class TreeMap:
 
     self._key_list.remove(info["key_list_node"])
     del self._key2info[key]
-    node = self._root._find_lower_bound(key)
-    node._remove()
+    self._root = self._root._remove(key, True)
 
   def set(self, key, value):
     rd = self._key2info.get(key, None)
