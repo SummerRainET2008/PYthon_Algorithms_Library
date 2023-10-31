@@ -1,4 +1,4 @@
-from pal.list import *
+from pyal.list.linked_list import LinkedList
 
 def display_list(list: LinkedList):
   iter = list.begin()
@@ -18,13 +18,14 @@ def main():
 
   list.insert_element(list.begin(), 100)
   iter = list.begin()
-  print(iter())             # The first element is 100.
+  print(f"After inserting 100 to the first position, "
+        f"the first element becomes {iter()}")
 
   last_element = list.pop_back()
-  print(last_element)       # 4
+  print(f"The last element is {last_element}")       # 4
 
-  new_node = ListNode(0)
-  list.insert(list.rbegin(), new_node)    # Insert into
+  list.insert_element(list.rbegin(), 0)
+  print(f"Insert 0 before the last element")
   display_list(list)
 
 if __name__ == "__main__":
