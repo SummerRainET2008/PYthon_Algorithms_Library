@@ -153,8 +153,7 @@ class _AVLTreeNode:
 
     return right
 
-  def _remove(self, key):
-    node = self._find_lower_bound(key)
+  def _remove(self):
     pass
 
 class TreeMap:
@@ -209,7 +208,8 @@ class TreeMap:
 
     self._key_list.remove(info["key_list_node"])
     del self._key2info[key]
-    self._root._remove(key)
+    node = self._root._find_lower_bound(key)
+    node._remove()
 
   def set(self, key, value):
     rd = self._key2info.get(key, None)

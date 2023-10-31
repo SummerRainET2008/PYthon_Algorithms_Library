@@ -38,5 +38,16 @@ def test_lower_bound():
   keys = list(tree.keys())
   assert keys == data
 
+def test_one_remove():
+  tree = TreeMap()
+  data = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10]
+  for d in data:
+    tree.set(d, d)
+
+  tree._print_tree()
+  tree.remove(5)
+  node = tree.lower_bound(5)
+  assert node() == 6
+
 if __name__ == '__main__':
   nose.run(defaultTest=__name__)
