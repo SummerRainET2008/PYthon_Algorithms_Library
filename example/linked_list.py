@@ -1,6 +1,6 @@
-from pyal.list.linked_list import LinkedList
+import pyal
 
-def display_list(list: LinkedList):
+def display_list(list: pyal.LinkedList):
   iter = list.begin()
   while iter is not list.end():
     print(iter(), end=" ")
@@ -8,7 +8,7 @@ def display_list(list: LinkedList):
   print()
 
 def main():
-  list = LinkedList()
+  list = pyal.LinkedList()
 
   list.push_back(1)
   list.push_back(2)

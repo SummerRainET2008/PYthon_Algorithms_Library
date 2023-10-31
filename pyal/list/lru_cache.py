@@ -3,7 +3,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
 import collections
-from .linked_list import ListNode, LinkedList
+from .linked_list import LinkedList
 
 class Item(collections.namedtuple("Item", ["key", "value"])):
   def update(self, value):
@@ -41,18 +41,3 @@ class LRUCache:
       self._list.remove(node)
       self._list.insert(self._list.begin(), node)
 
-
-# Your LRUCache object will be instantiated and called as such:
-# obj = LRUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
-
-if __name__ == "__main__":
-  cache = LRUCache(2)
-  for item in [[1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]:
-    print("input:", item)
-    if len(item) == 1:
-      print("get:", cache.get(item[0]))
-    elif len(item) == 2:
-      cache.put(item[0], item[1])
-    # cache.linked_list.display()
