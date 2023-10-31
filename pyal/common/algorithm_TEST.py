@@ -127,6 +127,6 @@ def test_top_k():
 
 def test_find_if():
   data = [1, 2, 3, 4, 5, 6]
-  
+
   assert data[find_first_if(data, lambda d: d % 2 == 0)] == 2
   assert data[find_last_if(data, lambda d: d % 2 == 0)] == 6
