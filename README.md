@@ -41,9 +41,9 @@ max key: 5
 # 3. Popular data structures.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
-    >  * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
+    >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
     >* DaynamicHeap [example](doc/example_DynamicHeap.md)
-    >  * `update`, `deletion`: O(log N)
+    >   * `update`, `deletion`: O(log N)
     >* MinHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
   * list
