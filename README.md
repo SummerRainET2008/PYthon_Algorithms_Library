@@ -7,6 +7,8 @@ This library, Python Algorithm Library (pyal), aims to provide a python version 
 
 # 2. Examples
 
+Balanced search tree based map, ```TreeMap```
+
 ```python
 import pyal
 
