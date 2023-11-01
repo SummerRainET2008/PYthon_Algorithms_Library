@@ -6,6 +6,38 @@ This library, Python Algorithm Library (pyal), aims to provide a python version 
 # 1. Install
 
 # 2. Examples
+
+```python
+import pyal
+
+tree_map = pyal.TreeMap()
+data = [(0, "a"), (1, "b"), (2, "c"), (3, "d"), (4, "e"), (5, "f")]
+for key, value in data:
+    tree_map.set(key, value)
+
+key = 0
+print(f"{key=}, value={tree_map.get(key)=}")
+
+key = 1
+node = tree_map.lower_bound(key)
+print(f"lower_bound({key=}): {node()=}")
+print(f"upper_bound({key=}): {node.next()()=}")
+
+print(f"min key: {tree_map.key_list_begin()()}")
+print(f"max key: {tree_map.key_list_end().prev()()}")
+
+```
+
+Output
+```
+key=0, value=tree_map.get(key)='a'
+lower_bound(key=1): node()=1
+upper_bound(key=1): node.next()()=2
+min key: 0
+max key: 5
+```
+
+
 # 3. Popular data structures.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
