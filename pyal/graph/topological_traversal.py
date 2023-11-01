@@ -1,6 +1,9 @@
 from .graph import Graph
 
-def topological_traversal(graph: Graph):
+def topological_traversal(graph: Graph)-> iter:
+  '''
+  :return: an iterator of vertex list each time.
+  '''
   graph = graph.clone()
   empty_set = [v for v in graph.vertexes() if graph.get_out_edges_size(v) == 0]
 
