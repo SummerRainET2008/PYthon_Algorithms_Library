@@ -59,6 +59,13 @@ def is_sorted(data: list, strict: bool = False):
     else:
       return False
 
+  prev = data[0]
+  for p in range(1, len(data)):
+    if (strict and prev > data[p]) or (not strict and prev >= data[p]):
+      prev = data[p]
+    else:
+      return False
+
   return True
 
 
@@ -326,3 +333,18 @@ def combinatorial_number(n, k):
 
 def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)
+
+# todo
+def combinations_with_duplicate(data: list)-> iter:
+  '''
+  :param data: should be sortable.
+  :return:
+  '''
+  pass
+
+# todo
+def longest_common_substr(str1: str, str2: str):
+  pass
+
+def top_k_similar(target: str, candidate_strs: list):
+  pass
