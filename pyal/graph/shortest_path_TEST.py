@@ -1,6 +1,4 @@
 from pyal.graph.graph import Graph
-from pyal.tree.dynamic_heap import DynamicHeap
-from pyal.common.algorithm import INF
 from pyal.graph.shortest_path import dijkstra
 
 def test_dijkstra():
@@ -17,6 +15,8 @@ def test_dijkstra():
 
   dist = dijkstra(graph, 1)
   print(dist)
+  assert dist[5] == 20
+  assert dist[4] == 20
 
 if __name__ == "__main__":
   test_dijkstra()

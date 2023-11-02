@@ -1,4 +1,4 @@
-from .graph import Graph
+from pyal.graph.graph import Graph
 
 def test_directional_graph():
   graph = Graph()
@@ -20,4 +20,8 @@ def test_unidirectional_graph():
   graph.set_edge(1, 2, 1.0, directed_edge=False)
 
   graph.print()
+
+if __name__ == "__main__":
+  test_directional_graph()
+  test_unidirectional_graph()
 
