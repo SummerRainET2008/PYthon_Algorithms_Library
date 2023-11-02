@@ -42,20 +42,20 @@ max key: 5
 
 # 2. Popular data structures and algorithms.
   * Tree
-    >* TreeMap [example](doc/example_TreeMap.md)
+    >* TreeMap [example](src/doc/example_TreeMap.md)
     >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
-    >* DaynamicHeap [example](doc/example_DynamicHeap.md)
+    >* DaynamicHeap [example](src/doc/example_DynamicHeap.md)
     >   * `update`, `deletion`: O(log N)
-    >* MinHeap [example](doc/example_MinHeap.md)
-    >* DisjointSet [example](doc/example_DisjointSet.md)
+    >* MinHeap [example](src/doc/example_MinHeap.md)
+    >* DisjointSet [example](src/doc/example_DisjointSet.md)
   * list
-    > * LinkedList [example](doc/example_DisjointSet.md)
-    > * Queue [example](doc/example_DisjointSet.md)
-    > * Dequeue [example](doc/example_DisjointSet.md)
-    > * Stack [example](doc/example_DisjointSet.md)
-    > * LRUCache [example](doc/example_DisjointSet.md)
+    > * LinkedList [example](src/doc/example_DisjointSet.md)
+    > * Queue [example](src/doc/example_DisjointSet.md)
+    > * Dequeue [example](src/doc/example_DisjointSet.md)
+    > * Stack [example](src/doc/example_DisjointSet.md)
+    > * LRUCache [example](src/doc/example_DisjointSet.md)
     >   * `get` & `set`: O(1)
-    > * LFUCache [example](doc/example_DisjointSet.md)
+    > * LFUCache [example](src/doc/example_DisjointSet.md)
     >   * `get` & `set`: O(1) 
   * String
   * Graph
