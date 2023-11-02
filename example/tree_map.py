@@ -12,7 +12,9 @@ def main():
   key = 1
   node = tree_map.lower_bound(key)
   print(f"lower_bound({key=}): {node()=}")
-  print(f"upper_bound({key=}): {node.next()()=}")
+
+  node = tree_map.upper_bounnd(key)
+  print(f"upper_bound({key=}): {node()=}")
 
   print(f"min key: {tree_map.key_list_begin()()}")
   print(f"max key: {tree_map.key_list_end().prev()()}")
