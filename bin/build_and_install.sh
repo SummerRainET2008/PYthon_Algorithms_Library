@@ -1,4 +1,5 @@
 # Change version
+# add __init__ in each folder
 rm -r dist 
 python3 -m build
 
