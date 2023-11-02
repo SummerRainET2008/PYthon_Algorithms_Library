@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "pyal"
+version = "1.0.0"
+description = "Python does not have some useful or important data structures, like linked list, tree map, just like STL in C++. This library, PYthon Algorithm Library (pyal), aims to provide a python version substitue of STL in C++."
+authors = ["Summer Xia"]
+license = "MIT"
+readme = "README.md"
+include = ["pyal/*", "doc/*", "README.md", "example/*"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

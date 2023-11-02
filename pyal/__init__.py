@@ -9,3 +9,5 @@ from .tree.disjoint_set import DisjointSet
 from .tree.dynamic_heap import DynamicHeap
 from .tree.min_heap import MinHeap
 from .tree.tree_map import TreeMap
+
+__version__ = "1.0.0"
