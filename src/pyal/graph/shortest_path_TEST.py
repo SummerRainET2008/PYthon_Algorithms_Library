@@ -1,5 +1,5 @@
-from pyal.graph.graph import Graph
-from pyal.graph.shortest_path import dijkstra
+from .graph import Graph
+from .shortest_path import dijkstra
 
 def test_dijkstra():
   graph = Graph()
@@ -17,6 +17,3 @@ def test_dijkstra():
   print(dist)
   assert dist[5] == 20
   assert dist[4] == 20
-
-if __name__ == "__main__":
-  test_dijkstra()
