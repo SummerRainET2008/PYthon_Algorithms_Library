@@ -3,9 +3,7 @@
 Python does not have some useful or important data structures, like linked list, tree map, just like STL in C++. 
 This library, PYthon Algorithm Library (pyal), aims to provide a python version substitue of STL in C++.
 
-# 1. Install
-
-# 2. Examples
+# 1. Examples
 
 Balanced search tree based map, ```TreeMap```
 
@@ -23,7 +21,9 @@ print(f"{key=}, value={tree_map.get(key)=}")
 key = 1
 node = tree_map.lower_bound(key)
 print(f"lower_bound({key=}): {node()=}")
-print(f"upper_bound({key=}): {node.next()()=}")
+
+node = tree_map.upper_bound(key)
+print(f"upper_bound({key=}): {node()=}")
 
 print(f"min key: {tree_map.key_list_begin()()}")
 print(f"max key: {tree_map.key_list_end().prev()()}")
@@ -34,13 +34,13 @@ Output
 ```
 key=0, value=tree_map.get(key)='a'
 lower_bound(key=1): node()=1
-upper_bound(key=1): node.next()()=2
+upper_bound(key=1): node()=2
 min key: 0
 max key: 5
 ```
 
 
-# 3. Popular data structures and algorithms.
+# 2. Popular data structures and algorithms.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
     >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
