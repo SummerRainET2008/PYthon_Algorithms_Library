@@ -1,6 +1,5 @@
 import pyal
 
-
 def display_list(list: pyal.LinkedList):
   iter = list.begin()
   while iter is not list.end():
