@@ -32,8 +32,8 @@ class Graph:
       print(edge)
     print()
 
-  def vertexes(self)-> list:
-    return list(self._vertexes)
+  def vertexes(self)-> set:
+    return set(self._vertexes)
 
   def get_weight(self, vertex1: int, vertex2: int):
     if vertex1 not in self._out_edges:

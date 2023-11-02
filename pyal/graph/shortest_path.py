@@ -3,6 +3,7 @@ from ..tree.dynamic_heap import DynamicHeap
 from ..common.algorithm import INF
 
 def dijkstra(graph: Graph, source: int):
+  assert source in graph.vertexes()
   heap = DynamicHeap()
   opt_dist = {source: 0}
   for v in graph.vertexes():
