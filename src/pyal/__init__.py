@@ -9,5 +9,9 @@ from .tree.disjoint_set import DisjointSet
 from .tree.dynamic_heap import DynamicHeap
 from .tree.min_heap import MinHeap
 from .tree.tree_map import TreeMap
+from .graph.shortest_path import dijkstra
+from .graph.graph import Graph
+from .graph.topological_traversal import topological_traversal
+from .string.search import search_KMP, search_patterns
 
 __version__ = "1.0.0"
