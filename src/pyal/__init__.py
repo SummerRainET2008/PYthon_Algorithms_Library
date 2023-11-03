@@ -14,4 +14,4 @@ from .graph.graph import Graph
 from .graph.topological_traversal import topological_traversal
 from .string.search import search_KMP, search_patterns
 
-__version__ = "1.0.9"
+__version__ = "1.0.10"

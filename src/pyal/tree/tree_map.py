@@ -230,7 +230,7 @@ class TreeMap:
 
     return self._key2info[node._key].key_list_node
 
-  def upper_bounnd(self, key):
+  def upper_bound(self, key):
     node = self.lower_bound(key)
     if node is self.key_list_end() or key < node():
       return node
