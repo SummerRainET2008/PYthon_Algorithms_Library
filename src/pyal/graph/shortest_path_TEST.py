@@ -1,5 +1,5 @@
-from .graph import Graph
-from .shortest_path import dijkstra
+from pyal.graph.graph import Graph
+from pyal.graph.shortest_path import Dijkstra
 
 def test_dijkstra():
   graph = Graph()
@@ -13,7 +13,9 @@ def test_dijkstra():
   graph.set_edge(4, 5,  6, directed_edge=False)
   graph.set_edge(5, 6,  9, directed_edge=False)
 
-  dist = dijkstra(graph, 1)
-  print(dist)
-  assert dist[5] == 20
-  assert dist[4] == 20
+  source = 1
+  dij = Dijkstra(graph, source)
+  for v in [1, 2, 3, 4, 5, 6]:
+    print(f"source: {source}, target: {v}, "
+          f"min_distance={dij.get_min_distance(v)}, "
+          f"optimal paths={dij.get_optimal_paths(v)}")

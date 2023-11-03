@@ -1,4 +1,4 @@
-from .graph import Graph
+from pyal.graph.graph import Graph
 
 def topological_traversal(graph: Graph)-> iter:
   '''

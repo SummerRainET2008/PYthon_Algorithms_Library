@@ -57,16 +57,20 @@ def is_sorted(data: list, strict: bool = False):
     if (strict and prev < data[p]) or (not strict and prev <= data[p]):
       prev = data[p]
     else:
-      return False
+      break
+  else:
+    return True
 
   prev = data[0]
   for p in range(1, len(data)):
     if (strict and prev > data[p]) or (not strict and prev >= data[p]):
       prev = data[p]
     else:
-      return False
+      break
+  else:
+    return True
 
-  return True
+  return False
 
 
 def unique(data: list):

@@ -2,7 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
-from .linked_list import ListNode, LinkedList
+from pyal.list.linked_list import ListNode, LinkedList
 
 debug = False
 # debug = True

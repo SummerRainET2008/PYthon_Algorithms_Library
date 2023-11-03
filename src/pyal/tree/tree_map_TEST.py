@@ -2,7 +2,7 @@
 >> nosetests -v --nocapture test/tree_map_TEST.py
 '''
 
-from .tree_map import TreeMap
+from pyal.tree.tree_map import TreeMap
 import random
 
 

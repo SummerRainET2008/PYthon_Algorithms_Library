@@ -2,7 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
-from ..list.linked_list import LinkedList
+from pyal.list.linked_list import LinkedList
 
 
 class _AVLTreeNode:

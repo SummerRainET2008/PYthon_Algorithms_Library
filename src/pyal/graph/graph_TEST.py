@@ -1,4 +1,4 @@
-from .graph import Graph
+from pyal.graph.graph import Graph
 
 def test_directional_graph():
   graph = Graph()

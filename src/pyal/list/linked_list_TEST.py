@@ -1,4 +1,4 @@
-from .linked_list import LinkedList, ListNode
+from pyal.list.linked_list import LinkedList, ListNode
 
 
 def test_list():

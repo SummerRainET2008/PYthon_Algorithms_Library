@@ -1,5 +1,5 @@
-from .graph import Graph
-from .topological_traversal import topological_traversal
+from pyal.graph.graph import Graph
+from pyal.graph.topological_traversal import topological_traversal
 
 def test_topological_traversal():
   graph = Graph()

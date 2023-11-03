@@ -3,7 +3,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
 import collections
-from .linked_list import LinkedList
+from pyal.list.linked_list import LinkedList
 
 
 class Item(collections.namedtuple("Item", ["key", "value"])):
