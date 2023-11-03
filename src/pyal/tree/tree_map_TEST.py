@@ -14,19 +14,19 @@ def test_tree_construction():
     random.shuffle(data)
     print(f"test_tree_connstruction: {data=}")
     for d in data:
-      tree.set(d, d)
+      tree[d] = d
 
     assert tree.size() == 50
 
-    tree.set(0, 100)
-    assert tree.get(0) == 100
+    tree[0] = 100
+    assert tree[0] == 100
 
 
 def test_extreme_construction():
   tree = TreeMap()
   max_size = 10_000
   for d in range(max_size):
-    tree.set(d, d)
+    tree[d] = d
   # tree._print_tree()
   assert tree.size() == max_size
 
@@ -37,7 +37,7 @@ def test_lower_bound():
   test_data = data[::]
   random.shuffle(test_data)
   for d in test_data:
-    tree.set(d, d)
+    tree[d] = d
 
   for p in range(len(data)):
     lower_node = tree.lower_bound(data[p] + 0.1)
@@ -57,7 +57,7 @@ def test_one_remove():
   tree = TreeMap()
   data = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10]
   for d in data:
-    tree.set(d, d)
+    tree[d] = d
   tree._print_tree()
 
   tree.remove(5)
@@ -92,7 +92,7 @@ def test_many_remove():
     random.shuffle(data_random)
     tree = TreeMap()
     for d in data_random:
-      tree.set(d, d)
+      tree[d] = d
 
     for pos, d in enumerate(data):
       tree.remove(d)

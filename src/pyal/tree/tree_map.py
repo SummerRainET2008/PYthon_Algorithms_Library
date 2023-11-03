@@ -246,7 +246,10 @@ class TreeMap:
     del self._key2info[key]
     self._root = self._root._remove(key, True)
 
-  def set(self, key, value):
+  def __getitem__(self, key):
+    return self._key2info[key]["value"]
+
+  def __setitem__(self, key, value):
     rd = self._key2info.get(key, None)
     if rd is not None:
       rd["value"] = value
