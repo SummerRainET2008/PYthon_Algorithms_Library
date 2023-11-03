@@ -8,119 +8,122 @@ import collections
 # Min-heap
 class DynamicHeap:
   '''
-  key: unique.
+  id: unique.
   value: used to compare in a heap
   '''
   Item = collections.namedtuple("Item", ["id", "value"])
 
   def __init__(self):
-    self.__id2pos = {}
-    self.__data = [self.Item(None, None)]  # [(value, key, ...)]
+    self._id2pos = {}
+    self._data = [self.Item(None, None)]  # [(value, key, ...)]
 
-  def __assign_item(self, pos, item: Item):
-    if pos == len(self.__data):
-      self.__data.append(item)
-    elif pos < len(self.__data):
-      self.__data[pos] = item
+  def _assign_item(self, pos, item: Item):
+    if pos == len(self._data):
+      self._data.append(item)
+    elif pos < len(self._data):
+      self._data[pos] = item
     else:
       assert False
 
-    self.__id2pos[item.id] = pos
+    self._id2pos[item.id] = pos
 
-  def __pop_item(self):
+  def _pop_item(self):
     assert self.size() > 0
-    item = self.__data.pop()
-    del self.__id2pos[item.id]
+    item = self._data.pop()
+    del self._id2pos[item.id]
 
   def size(self):
-    return len(self.__data) - 1
+    return len(self._data) - 1
 
   def top(self):
     assert self.size() > 0
-    return self.__data[1]
+    return self._data[1]
 
   def push(self, id, value):
-    pos = len(self.__data)
-    self.__assign_item(pos, self.Item(id=id, value=value))
-    self.__adjust_bottom_to_up(pos)
+    pos = self._id2pos.get(id, None)
+    assert pos is None, f"id={id} is existent. You could use self.update(...)."
+
+    pos = len(self._data)
+    self._assign_item(pos, self.Item(id=id, value=value))
+    self._adjust_bottom_to_up(pos)
     # print(self.__data)
 
   def pop(self):
     '''min heap'''
     assert self.size() > 0
 
-    ret = self.__data[1]
+    ret = self._data[1]
     if self.size() == 1:
-      self.__pop_item()
+      self._pop_item()
       return ret
 
-    del self.__id2pos[ret.id]
-    last = self.__data.pop()
-    self.__assign_item(1, last)
+    del self._id2pos[ret.id]
+    last = self._data.pop()
+    self._assign_item(1, last)
 
-    self.__adjust_up_to_bottom(1)
+    self._adjust_up_to_bottom(1)
 
     # print(self.__data)
     return ret
 
   def get(self, id):
-    pos = self.__id2pos.get(id, -1)
-    return None if pos == -1 else self.__data[pos]
+    pos = self._id2pos.get(id, -1)
+    return None if pos == -1 else self._data[pos].value
 
   def remove(self, id):
-    pos = self.__id2pos.get(id, None)
+    pos = self._id2pos.get(id, None)
     if pos is None:
       return
 
-    del self.__id2pos[id]
-    if pos == len(self.__data) - 1:
-      self.__data.pop()
+    del self._id2pos[id]
+    if pos == len(self._data) - 1:
+      self._data.pop()
       return
 
-    old_item = self.__data[pos]
-    new_item = self.__data.pop()
-    self.__assign_item(pos, new_item)
+    old_item = self._data[pos]
+    new_item = self._data.pop()
+    self._assign_item(pos, new_item)
     if new_item.value < old_item.value:
-      self.__adjust_bottom_to_up(pos)
+      self._adjust_bottom_to_up(pos)
     else:
-      self.__adjust_up_to_bottom(pos)
+      self._adjust_up_to_bottom(pos)
 
   def update(self, id, value):
-    pos = self.__id2pos[id]
-    old_item = self.__data[pos]
+    pos = self._id2pos[id]
+    old_item = self._data[pos]
     if value == old_item.value:
       return
 
     new_item = self.Item(id=old_item.id, value=value)
-    self.__data[pos] = new_item
+    self._data[pos] = new_item
     if value < old_item.value:
-      self.__adjust_bottom_to_up(pos)
+      self._adjust_bottom_to_up(pos)
     else:
-      self.__adjust_up_to_bottom(pos)
+      self._adjust_up_to_bottom(pos)
 
-  def __adjust_bottom_to_up(self, pos):
+  def _adjust_bottom_to_up(self, pos):
     f = pos // 2
-    if f >= 1 and self.__data[f].value > self.__data[pos].value:
-      item = self.__data[pos]
-      self.__assign_item(pos, self.__data[f])
-      self.__assign_item(f, item)
-      self.__adjust_bottom_to_up(f)
+    if f >= 1 and self._data[f].value > self._data[pos].value:
+      item = self._data[pos]
+      self._assign_item(pos, self._data[f])
+      self._assign_item(f, item)
+      self._adjust_bottom_to_up(f)
 
-  def __adjust_up_to_bottom(self, pos):
-    cands = [(self.__data[s].value, s) for s in [pos * 2, pos * 2 + 1]
-             if s < len(self.__data)]
+  def _adjust_up_to_bottom(self, pos):
+    cands = [(self._data[s].value, s) for s in [pos * 2, pos * 2 + 1]
+             if s < len(self._data)]
     if cands == []:
       return
 
     s = min(cands)[1]
-    if self.__data[pos].value < self.__data[s].value:
+    if self._data[pos].value < self._data[s].value:
       return
 
-    item = self.__data[s]
-    self.__assign_item(s, self.__data[pos])
-    self.__assign_item(pos, item)
+    item = self._data[s]
+    self._assign_item(s, self._data[pos])
+    self._assign_item(pos, item)
 
-    self.__adjust_up_to_bottom(s)
+    self._adjust_up_to_bottom(s)
 
 
 def case_1():
