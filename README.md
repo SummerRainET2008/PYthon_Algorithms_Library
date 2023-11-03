@@ -42,7 +42,8 @@ def main():
 
 Output
 ```
-key=0, value=tree_map.get(key)='a'
+key=-1 does not exist
+key=0, value=a
 lower_bound(key=1): node()=1
 upper_bound(key=1): node()=2
 min key: 0
@@ -51,6 +52,7 @@ max key: 5
 
 
 # 3. Popular data structures and algorithms.
+  Please check [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library) for all examples.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
     >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
