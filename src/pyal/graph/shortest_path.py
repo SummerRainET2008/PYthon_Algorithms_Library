@@ -27,7 +27,7 @@ class Dijkstra:
         if edge.v2 in self._opt_dist:
           continue
 
-        old_value = heap.get(edge.v2).value
+        old_value = heap.get(edge.v2)
         new_value = dist + edge.weight
         if new_value < old_value:
           heap.update(edge.v2, new_value)

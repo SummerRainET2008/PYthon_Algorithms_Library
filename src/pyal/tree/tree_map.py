@@ -204,13 +204,13 @@ class TreeMap:
     else:
       self._root._print_tree()
 
-  def keys(self):
+  def keys(self)-> iter:
     node = self._key_list.begin()
     while node is not self._key_list.end():
       yield node()
       node = node.next()
 
-  def items(self):
+  def items(self)-> iter:
     for key in self.keys():
       yield key, self.get(key)
 
