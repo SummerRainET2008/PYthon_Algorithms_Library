@@ -187,9 +187,13 @@ class _AVLTreeNode:
 
 class TreeMap:
   def __init__(self):
+    from collections import namedtuple
+
     self._root = None
     self._key_list = LinkedList()
-    self._key2info = {}  # {"key": ["value", "key_list_node"]}
+
+    self._KeyInfo = namedtuple("KeyInfo", ["value", "key_list_node"])
+    self._key2info = {}  # {"key": KeyInfo}
 
   def size(self):
     return self._key_list.size()
@@ -224,7 +228,7 @@ class TreeMap:
     if node is None:
       return self._key_list.end()
 
-    return self._key2info[node._key]["key_list_node"]
+    return self._key2info[node._key].key_list_node
 
   def upper_bounnd(self, key):
     node = self.lower_bound(key)
@@ -235,34 +239,31 @@ class TreeMap:
 
   def get(self, key, default_value=None):
     info = self._key2info.get(key, None)
-    return default_value if info is None else info["value"]
+    return default_value if info is None else info.value
 
   def remove(self, key):
     info = self._key2info.get(key, None)
     if info is None:
       return
 
-    self._key_list.remove(info["key_list_node"])
+    self._key_list.remove(info.key_list_node)
     del self._key2info[key]
     self._root = self._root._remove(key, True)
 
   def __getitem__(self, key):
-    return self._key2info[key]["value"]
+    return self._key2info[key].value
 
   def __setitem__(self, key, value):
     rd = self._key2info.get(key, None)
     if rd is not None:
-      rd["value"] = value
+      self._key2info[key] = rd._replace(value=value)
       return
 
     if self._root is None:
       self._root = _AVLTreeNode(key)
       self._key_list.push_back(key)
-      self._key2info[key] = {
-          "key": key,
-          "value": value,
-          "key_list_node": self._key_list.rbegin()
-      }
+      self._key2info[key] = self._KeyInfo(
+        value=value, key_list_node=self._key_list.rbegin())
 
     else:
       next_key = [None]
@@ -271,11 +272,8 @@ class TreeMap:
       if next_key[0] is None:
         next_node = self._key_list.end()
       else:
-        next_node = self._key2info[next_key[0]]["key_list_node"]
+        next_node = self._key2info[next_key[0]].key_list_node
       self._key_list.insert_element(next_node, key)
 
-      self._key2info[key] = {
-          "key": key,
-          "value": value,
-          "key_list_node": next_node.prev()
-      }
+      self._key2info[key] = self._KeyInfo(
+        value=value, key_list_node=next_node.prev())
