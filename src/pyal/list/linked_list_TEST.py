@@ -10,6 +10,7 @@ def test_list():
   assert list.rbegin()() == 2
 
   assert list.size() == 2
+  assert list.to_list() == [1, 2]
 
 
 def test_insertion():

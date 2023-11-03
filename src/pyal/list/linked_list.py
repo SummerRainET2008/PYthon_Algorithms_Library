@@ -27,6 +27,16 @@ class LinkedList:
     self._fake_tail._prev = self._fake_head
     self._num = 0
 
+  def to_list(self):
+    ans = []
+    node = self.begin()
+    while node is not self.end():
+      ans.append(node())
+      node = node.next()
+
+    return ans
+
+
   def size(self):
     return self._num
 
