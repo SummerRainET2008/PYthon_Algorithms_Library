@@ -14,14 +14,13 @@ heap related functions.
 1. `__init__(self)`
 1. `size(self)`
 1. `top(self)`
-   ```commandline
+   
    Return the smallest value without removing it.   
-   ``` 
 1. `push(self, id, value)`
 1. `pop(self)`
-   ```commandline
+                   
    Return the smallest value and remove it.
-   ``` 
+    
 1. `get(self, id)`
 1. `remove(self, id)`
 1. `update(self, id, value)`

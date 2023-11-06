@@ -70,16 +70,16 @@
    ```
 
 1. `key_list_end(self)`
-   ```commandline
+                  
    It is a dummy node that just denotes the end of a list. 
    Usually you use `node is not tree.key_list_end()` to know whether it reaches the end. 
    This aligns with C++ STL style.
-   ```
+      
 1. `lower_bound(self, key)`
-   ```commandline
+                  
    It returns the first ListNode whose key is not smaller than the input key. 
    You can use `ListNode.prev()` or `ListNode.next()` to traverse the remaining tree.
-   ```
+      
    ```python
    lower_bound_node = tree.lower_bound(4.5)
    lower_bound_key = lower_bound_node()        # 5
@@ -88,21 +88,20 @@
    print(next_node())
    ```
 1. `upper_bound(self, key)`
-   ```commandline
+                  
    It returns the first ListNode whose key is greater than the input key.
-   ```
    ```python
    upper_bound_node = tree.upper_bound(5)
    upper_bound_key = upper_bound_node()        # 6
    print(upper_bound_key)
    ```
 1. `get(self, key, default_value=None)`
-   ```commandline
+                  
    If you know the element exists in the map, you can just use `TreeMap[key]`, or
    use this function with a default value when absent.
-   ```
+   
 1. `remove(self, key)`
-   ```python
+             
    This function would not throw an exception whether the key exists or not.
-   ```
+       
 
