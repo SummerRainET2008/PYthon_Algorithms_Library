@@ -2,8 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
-import collections
-from pyal.tree.dynamic_heap import DynamicHeap
+from pyal import DynamicHeap
 
 
 def test_basic():

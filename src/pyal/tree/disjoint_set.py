@@ -10,6 +10,9 @@ class DisjointSet:
     self._clusters_num = n
 
   def combine(self, a, b):
+    assert 0 <= a < self._clusters_num
+    assert 0 <= b < self._clusters_num
+
     c1 = self.get_cluster_id(a)
     c2 = self.get_cluster_id(b)
     if c1 == c2:
@@ -24,6 +27,8 @@ class DisjointSet:
     self._clusters_num -= 1
 
   def get_cluster_id(self, a):
+    assert 0 <= a < self._clusters_num
+
     father = self._fathers.get(a, -1)
     if father == -1:
       return a
