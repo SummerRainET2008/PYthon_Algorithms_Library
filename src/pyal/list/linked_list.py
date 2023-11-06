@@ -7,7 +7,7 @@ class ListNode:
   def __init__(self, content):
     self._prev = None
     self._next = None
-    self.content = content
+    self._content = content
 
   def next(self):
     return self._next
@@ -16,7 +16,7 @@ class ListNode:
     return self._prev
 
   def __call__(self):
-    return self.content
+    return self._content
 
 
 class LinkedList:
