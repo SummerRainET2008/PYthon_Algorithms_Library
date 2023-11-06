@@ -50,8 +50,8 @@
    ```
 1. `key_list_begin(self)`
 
-   All keys are organized in an sorted order stored in a [linked list](example_LinkedList.md). To get the value stored
-   in some node, we can use `ListNode()` operation. 
+   All keys are organized in an sorted order stored in a [LinkedList](example_LinkedList.md). To get the value stored
+   in some node, we can use `ListNode.__call__()` operation. 
    ```python
    key_list_node = tree.key_list_begin()
    while key_list_node is not tree.key_list_end():
@@ -77,7 +77,7 @@
 
 1. `lower_bound(self, key)`
 
-   It returns a ListNode whose key is the first one that is not smaller than the input key. 
+   It returns the first ListNode whose key is not smaller than the input key. 
    You can use `ListNode.prev()` or `ListNode.next()` to traverse the remaining tree.
 
    ```python
@@ -88,7 +88,7 @@
    print(next_node())
    ```
 1. `upper_bound(self, key)`
-   It returns a ListNode whose key is the first one that is grater than the input key.
+   It returns the first ListNode whose key is greater than the input key.
    ```python
    upper_bound_node = tree.upper_bound(5)
    upper_bound_key = upper_bound_node()        # 6
