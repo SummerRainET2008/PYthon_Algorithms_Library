@@ -10,8 +10,9 @@
 
 1. `__init__(self)`
 1. `to_list(self)`
-   
+   ```commandline
    Convert to a Python list.
+   ``` 
 1. `size(self)`
 1. `push_front(self, content)`
 1. `push_back(self, content)`
@@ -20,16 +21,19 @@
 1. `begin(self)`
 1. `end(self)`
 1. `rbegin(self)`
-   
+   ```commandline
    This is the first position in a reversed List, just like C++ STL does.
+   ``` 
 1. `rend(self)`
-   
+   ```commandline
    This is the dummy end node in a reversed List, just like C++ STL does.
+   ``` 
 1. `insert_element(self, pos_node: ListNode, e)`
-
+   ```commandline
    Insert a new node with value `e` before the `pos_node`.
+   ``` 
 1. `insert(self, pos_node: ListNode, node: ListNode)`
-
+   ```commandline
    Insert the node `node` before the `pos_node`.
-
+   ``` 
 1. `remove(self, node: ListNode)`
