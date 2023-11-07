@@ -182,13 +182,13 @@ def argmin(data: list):
   return opt_pos
 
 
-def make_new_list(shape: tuple, init_value):
+def make_list(shape: tuple, init_value):
   assert len(shape) > 0
 
   if len(shape) == 1:
     return [init_value for _ in range(shape[0])]
 
-  return [make_new_list(shape[1:], init_value) for _ in range(shape[0])]
+  return [make_list(shape[1:], init_value) for _ in range(shape[0])]
 
 
 def swap(data: list, index1, index2):
@@ -314,7 +314,7 @@ def next_permutation(data: list):
 
 
 def prev_permutation(data: list):
-  pass
+  raise NotImplemented("todo")
 
 
 @functools.cache
@@ -344,11 +344,11 @@ def combinations_with_duplicate(data: list)-> iter:
   :param data: should be sortable.
   :return:
   '''
-  pass
+  raise NotImplemented("todo")
 
 # todo
 def longest_common_substr(str1: str, str2: str):
-  pass
+  raise NotImplemented("todo")
 
 def top_k_similar(target: str, candidate_strs: list):
-  pass
+  raise NotImplemented("todo")

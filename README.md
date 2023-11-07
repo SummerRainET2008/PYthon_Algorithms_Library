@@ -3,12 +3,12 @@
 Python does not have some useful or important data structures, like `linked list`, `tree map`, just like STL in C++. 
 This library, PYthon Algorithm Library (pyal), aims to provide a python version substitue of STL in C++.
 
-# 1. Install [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library)
+# 1. Install 
  ```bash
  python3 -m pip install Python-Algorithm-pyal
  ```
 
-# 2. Examples
+# 2. Examples [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library)
 
 Balanced search tree based map, ```TreeMap```
 
@@ -70,5 +70,43 @@ max key: 5
     > * LFUCache [example](doc/example_DisjointSet.md)
     >   * `get` & `set`: O(1) 
   * String
+    >* search_KMP
+    >* search_multipatterns
+    >  * todo
   * Graph
-  * Common useful functions. 
+    > * Graph
+    > * Dijkstra
+    > * topological_traversal
+  * Common useful functions
+    > * `is_none_or_empty`
+    > * `histogram_ascii`
+    > * `is_sorted` 
+    > * `unique` 
+    > * `cmp`
+    > * `split_data_by_func` 
+    > * `eq`
+    > * `discrete_sample` 
+    > * `group_by_key_fun` 
+    > * `top_n`
+    > * `clamp`
+    > * `argmax`
+    > * `argmin`
+    > * `make_list`
+    > * `swap`
+    > * `rotate`
+    > * `copy_to`
+    > * `kth_smallest_element`
+    > * `lower_bound`
+    > * `upper_bound`
+    > * `reverse_in_place`
+    > * `sort_in_place`
+    > * `find_first_if`
+    > * `find_last_if`
+    > * `next_permutation`
+    > * `prev_permutation`
+    > * `factorial`
+    > * `combinatorial_number`
+    > * `permutation_number`
+    > * `combinations_with_duplicate`
+    > * `longest_common_substr`
+    > * `top_k_similar`

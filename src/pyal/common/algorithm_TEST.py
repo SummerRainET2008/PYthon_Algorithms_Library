@@ -50,8 +50,8 @@ def test_argmax():
   assert data[argmin(data)] == 1
 
 
-def test_make_new_list():
-  data = make_new_list((2, 3, 4), None)
+def test_make_list():
+  data = make_list((2, 3, 4), None)
   assert len(data) == 2 and len(data[0]) == 3 and len(data[0][0]) == 4
 
 
