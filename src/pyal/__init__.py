@@ -12,6 +12,6 @@ from .tree.tree_map import TreeMap
 from .graph.shortest_path import Dijkstra
 from .graph.graph import Graph
 from .graph.topological_traversal import topological_traversal
-from .string.search import search_KMP, search_patterns
+from .string.search import search_KMP
 
 __version__ = "1.0.11"

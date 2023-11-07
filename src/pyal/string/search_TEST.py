@@ -1,4 +1,4 @@
-from pyal import search_KMP, search_patterns
+from pyal import search_KMP
 
 def test_KMP():
   '''
