@@ -49,23 +49,19 @@ def histogram_ascii(points, out_file=sys.stdout) -> None:
 
 
 def is_sorted(data: list, strict: bool = False):
-  if len(data) == 0:
+  if len(data) <= 1:
     return True
 
-  prev = data[0]
   for p in range(1, len(data)):
-    if (strict and prev < data[p]) or (not strict and prev <= data[p]):
-      prev = data[p]
-    else:
+    if not ((strict and data[p - 1] < data[p]) or
+            (not strict and data[p - 1] <= data[p])):
       break
   else:
     return True
 
-  prev = data[0]
   for p in range(1, len(data)):
-    if (strict and prev > data[p]) or (not strict and prev >= data[p]):
-      prev = data[p]
-    else:
+    if not ((strict and data[p - 1] > data[p]) or
+            (not strict and data[p - 1] >= data[p])):
       break
   else:
     return True
