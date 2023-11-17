@@ -133,5 +133,10 @@ def test_find_if():
 
 def test_combination_with_duplicate():
   data = [1, 1, 1, 2, 2, 2, 3, 3, 4]
-  for solu in combinations_with_duplicate(data, 3):
-    print(solu)
+  combs = list(combinations_with_duplicate(data, 3))
+  assert len(combs) == 15
+  print(combs)
+
+  data = [1, 1, 2, 2]
+  combs = list(combinations_with_duplicate(data, 2))
+  assert len(combs) == 3

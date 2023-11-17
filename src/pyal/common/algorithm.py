@@ -361,7 +361,7 @@ def combinations_with_duplicate(data: list, k: int)-> iter:
       # print(f"{start=}, {_k=}: {solus=}")
       return solus
 
-  _comb_helper.cache_clear()
+  # _comb_helper.cache_clear()
 
   sdata = sorted(data)
   yield from _comb_helper(0, k)
