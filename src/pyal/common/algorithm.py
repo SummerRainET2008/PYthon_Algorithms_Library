@@ -1,6 +1,7 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
+import copy
 import sys
 import typing
 import functools
@@ -335,12 +336,31 @@ def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)
 
 # todo
-def combinations_with_duplicate(data: list)-> iter:
+def combinations_with_duplicate(data: list, k: int)-> iter:
   '''
   :param data: should be sortable.
   :return:
   '''
-  raise NotImplemented("todo")
+  def _comb_helper(nums, start, _k, solu: list):
+    if not (len(nums) - start >= _k):
+      return
+
+    if _k == 0:
+      yield copy.copy(solu)
+      return
+
+    else:
+      last_p = None
+      for cur_p in range(start, len(nums)):
+        if last_p is None or nums[last_p] != nums[cur_p]:
+          last_p = cur_p
+          solu.append(nums[cur_p])
+          yield from _comb_helper(nums, cur_p + 1, _k - 1, solu)
+          solu.pop()
+
+  data = sorted(data)
+
+  yield from _comb_helper(data, 0, k, [])
 
 # todo
 def longest_common_substr(str1: str, str2: str):

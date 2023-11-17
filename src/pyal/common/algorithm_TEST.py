@@ -130,3 +130,8 @@ def test_find_if():
 
   assert data[find_first_if(data, lambda d: d % 2 == 0)] == 2
   assert data[find_last_if(data, lambda d: d % 2 == 0)] == 6
+
+def test_combination_with_duplicate():
+  data = [1, 1, 1, 2, 2, 2, 3, 3, 4]
+  for solu in combinations_with_duplicate(data, 3):
+    print(solu)
