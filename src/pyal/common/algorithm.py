@@ -366,9 +366,3 @@ def combinations_with_duplicate(data: list, k: int)-> iter:
   sdata = sorted(data)
   yield from _comb_helper(0, k)
 
-# todo
-def longest_common_substr(str1: str, str2: str):
-  raise NotImplemented("todo")
-
-def top_k_similar(target: str, candidate_strs: list):
-  raise NotImplemented("todo")
