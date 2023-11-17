@@ -19,7 +19,7 @@ def test_insertion():
   list.push_back(2)
   list.push_back(3)
   list.push_back(4)
-  list.insert(list.begin(), ListNode(0))
+  list.insert_element(list.begin(), 0)
   list.insert(list.rbegin(), ListNode(100))
 
   iter = list.begin()

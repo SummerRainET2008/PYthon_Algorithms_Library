@@ -2,7 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
-from pyal.list.linked_list import ListNode, LinkedList
+from pyal.list.linked_list import LinkedList
 
 debug = False
 # debug = True
@@ -48,7 +48,7 @@ class LFUCache:
 
     if main_node is self._list.begin() or \
       main_node.prev()().freq != auxnode().freq:
-      self._list.insert(main_node, ListNode(MainValue(auxnode().freq)))
+      self._list.insert_element(main_node, MainValue(auxnode().freq))
 
     main_node = main_node.prev()
     auxnode().main_node = main_node
