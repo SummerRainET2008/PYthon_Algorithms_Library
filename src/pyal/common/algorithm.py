@@ -321,6 +321,7 @@ def factorial(n: int):
   return n * factorial(n - 1)
 
 
+@functools.cache
 def combinatorial_number(n, k):
   if k > n - k:
     return combinatorial_number(n, n - k)
@@ -332,6 +333,7 @@ def combinatorial_number(n, k):
   return ans
 
 
+@functools.cache
 def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)
 
