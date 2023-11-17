@@ -335,32 +335,36 @@ def combinatorial_number(n, k):
 def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)
 
-# todo
 def combinations_with_duplicate(data: list, k: int)-> iter:
   '''
   :param data: should be sortable.
   :return:
   '''
-  def _comb_helper(nums, start, _k, solu: list):
-    if not (len(nums) - start >= _k):
-      return
+  @functools.cache
+  def _comb_helper(start, _k):
+    # print(f"debug: {start=} {_k=}")
+    if not (len(sdata) - start >= _k):
+      return []
 
     if _k == 0:
-      yield copy.copy(solu)
-      return
+      return [[]]
 
     else:
       last_p = None
-      for cur_p in range(start, len(nums)):
-        if last_p is None or nums[last_p] != nums[cur_p]:
+      solus = []
+      for cur_p in range(start, len(sdata)):
+        if last_p is None or sdata[last_p] != sdata[cur_p]:
           last_p = cur_p
-          solu.append(nums[cur_p])
-          yield from _comb_helper(nums, cur_p + 1, _k - 1, solu)
-          solu.pop()
+          for solu in _comb_helper(cur_p + 1, _k - 1):
+            solus.append([sdata[cur_p]] + solu)
 
-  data = sorted(data)
+      # print(f"{start=}, {_k=}: {solus=}")
+      return solus
 
-  yield from _comb_helper(data, 0, k, [])
+  _comb_helper.cache_clear()
+
+  sdata = sorted(data)
+  yield from _comb_helper(0, k)
 
 # todo
 def longest_common_substr(str1: str, str2: str):
