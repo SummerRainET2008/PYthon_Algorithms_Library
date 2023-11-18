@@ -72,9 +72,9 @@ def test_the_kth_element():
   kth_smallest_element(data, 3)
   assert data[3] == 4
 
+  data = [1, 2, 3, 4, 5, 6]
   for _ in range(factorial(len(data))):
     data = next_permutation(data)
-    # print(data)
 
   assert data == [1, 2, 3, 4, 5, 6]
 
