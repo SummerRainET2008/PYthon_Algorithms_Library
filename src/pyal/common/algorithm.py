@@ -115,7 +115,7 @@ def discrete_sample(probs: list) -> int:
       return pos
 
 
-def group_by_key_fun(data, key_fun=None):
+"""def group_by_key_fun(data, key_fun=None):
   import collections
   '''
   data: list or dict
@@ -127,7 +127,7 @@ def group_by_key_fun(data, key_fun=None):
     key = d[0] if key_fun is None else key_fun(d)
     result[key].append(d)
 
-  return result
+  return result"""
 
 
 def top_n(data: list,
@@ -372,3 +372,37 @@ def combinations_with_duplicate(data: list, k: int) -> iter:
 
   sdata = sorted(data)
   yield from _comb_helper(0, k)
+
+
+def group_data(data: list, sequential: bool=True)-> iter:
+  '''
+  :param data: list
+  :param sequential: if True then data is like [1, 1, 2, 2, 0, 0, 0]; otherwise
+  the data is like [1, 0, 2, 2, 1, 0, 0]
+  :return: iterator
+  '''
+  if data == []:
+    return
+
+  if sequential:
+    e, freq = None, 0
+    for v in data:
+      if e is None:
+        e, freq = v, 1
+      elif v == e:
+        freq += 1
+      else:
+        yield (e, freq)
+        e, freq = v, 1
+
+    yield (e, freq)
+
+  elif isinstance(data[0], (int, float, str)):
+    from collections import Counter
+    counter = Counter(data)
+    for k, f in counter.items():
+      yield k, f
+
+  else:
+    data = sorted(data)
+    yield from group_data(data, sequential=True)

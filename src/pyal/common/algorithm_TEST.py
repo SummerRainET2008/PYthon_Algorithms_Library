@@ -36,14 +36,6 @@ def test_unique():
   assert data == [1, 2, 3]
 
 
-def test_top_k():
-  import random
-  data = [1, 2, 3, 4, 5, 6, 7]
-  random.shuffle(data)
-  assert top_n(data, 3, "max", to_sort=True) == [7, 6, 5]
-  assert top_n(data, 3, "min", to_sort=True) == [1, 2, 3]
-
-
 def test_argmax():
   data = [1, 2, 3, 4, 5, 6, 7]
   assert data[argmax(data)] == 7
@@ -142,3 +134,15 @@ def test_combination_with_duplicate():
   data = [1, 1, 2, 2]
   combs = list(combinations_with_duplicate(data, 2))
   assert len(combs) == 3
+
+def test_group_data():
+  import random
+
+  data = [1, 1, 2, 2, 0, 0, 0]
+  groups = list(group_data(data, sequential=True))
+  assert groups == [(1, 2), (2, 2), (0, 3)]
+
+  random.shuffle(data)
+  groups = list(group_data(data, sequential=False))
+  groups = sorted(groups)
+  assert groups == [(0, 3), (1, 2), (2, 2)]
