@@ -28,5 +28,6 @@ def search_KMP(text: str, pattern: str):
     return p1 - len(pattern)
   return -1
 
+
 def search_mutipatterns(text: str, patterns: list):
   raise NotImplemented("todo")

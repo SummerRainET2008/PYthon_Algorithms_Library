@@ -4,6 +4,7 @@ Author: Tian Xia (TianXia0209@gmail.com)
 
 from pyal.list.linked_list import LinkedList
 
+
 class Dequeue:
   def __init__(self):
     self._data = LinkedList()

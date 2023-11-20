@@ -1,6 +1,7 @@
 from pyal.graph.graph import Graph
 
-def topological_traversal(graph: Graph)-> iter:
+
+def topological_traversal(graph: Graph) -> iter:
   '''
   :return: an iterator of vertex list each time.
   '''

@@ -11,6 +11,7 @@ def test_basic():
     heap.push(id=value, value=value)
     assert heap.top().id == value
 
+
 def test_update():
   heap = DynamicHeap()
   heap.push(1, 5)
@@ -34,4 +35,3 @@ def test_update():
 
   assert heap.get(4) == 8
   assert heap.top() == DynamicHeap.Item(4, 8)
-

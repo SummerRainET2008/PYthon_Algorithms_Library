@@ -1,5 +1,6 @@
 import pyal
 
+
 def main():
   tree_map = pyal.TreeMap()
   data = [(0, "a"), (1, "b"), (2, "c"), (3, "d"), (4, "e"), (5, "f")]

@@ -1,5 +1,6 @@
 from pyal.graph.graph import Graph
 
+
 def test_directional_graph():
   graph = Graph()
   graph.set_edge(1, 2, 1.0)
@@ -12,6 +13,7 @@ def test_directional_graph():
   assert len(list(graph.get_in_edges(2))) == 1
   assert len(list(graph.get_out_edges(1))) == 1
 
+
 def test_unidirectional_graph():
   graph = Graph()
   graph.set_edge(1, 2, 1.0, directed_edge=False)
@@ -20,4 +22,3 @@ def test_unidirectional_graph():
   graph.set_edge(1, 2, 1.0, directed_edge=False)
 
   graph.print()
-

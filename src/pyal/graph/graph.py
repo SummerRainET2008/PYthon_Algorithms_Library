@@ -1,5 +1,6 @@
 import collections
 
+
 class Graph:
   Edge = collections.namedtuple("Edge", ["v1", "v2", "weight"])
 
@@ -32,7 +33,7 @@ class Graph:
       print(edge)
     print()
 
-  def vertexes(self)-> set:
+  def vertexes(self) -> set:
     return set(self._vertexes)
 
   def get_weight(self, vertex1: int, vertex2: int):
@@ -56,8 +57,11 @@ class Graph:
     except:
       pass
 
-  def set_edge(self, vertex1: int, vertex2: int, weight: float,
-               directed_edge: bool=True):
+  def set_edge(self,
+               vertex1: int,
+               vertex2: int,
+               weight: float,
+               directed_edge: bool = True):
     self._vertexes.add(vertex1)
     self._vertexes.add(vertex2)
     self._out_edges.setdefault(vertex1, {})[vertex2] = weight
@@ -65,5 +69,3 @@ class Graph:
 
     if not directed_edge:
       self.set_edge(vertex2, vertex1, weight, directed_edge=True)
-
-

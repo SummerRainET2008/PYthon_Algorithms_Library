@@ -1,6 +1,7 @@
 from pyal.graph.graph import Graph
 from pyal.graph.topological_traversal import topological_traversal
 
+
 def test_topological_traversal():
   graph = Graph()
   graph.set_edge(1, 2, 1.0)
@@ -12,5 +13,3 @@ def test_topological_traversal():
   assert vertexes[0] == [4]
   assert vertexes[1] == [3]
   assert vertexes[2] == [2]
-
-

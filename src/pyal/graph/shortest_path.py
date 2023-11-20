@@ -2,6 +2,7 @@ from pyal.graph.graph import Graph
 from pyal.tree.dynamic_heap import DynamicHeap
 from pyal.common.algorithm import INF
 
+
 class Dijkstra:
   def __init__(self, graph: Graph, source_vertex: int):
     assert source_vertex in graph.vertexes()

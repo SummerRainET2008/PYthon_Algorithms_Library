@@ -1,5 +1,6 @@
 import pyal
 
+
 def main():
   tree = pyal.TreeMap()
 
@@ -20,15 +21,15 @@ def main():
     key_list_node = key_list_node.next()
 
   lower_bound_node = tree.lower_bound(4.5)
-  lower_bound_key = lower_bound_node()        # 5
-  lower_bound_value = tree[lower_bound_key]   # pyal
-  next_node = lower_bound_node.next()         # pointing to <6, library>
+  lower_bound_key = lower_bound_node()  # 5
+  lower_bound_value = tree[lower_bound_key]  # pyal
+  next_node = lower_bound_node.next()  # pointing to <6, library>
   print(next_node())
 
   upper_bound_node = tree.upper_bound(5)
-  upper_bound_key = upper_bound_node()        # 6
+  upper_bound_key = upper_bound_node()  # 6
   print(upper_bound_key)
+
 
 if __name__ == "__main__":
   main()
-

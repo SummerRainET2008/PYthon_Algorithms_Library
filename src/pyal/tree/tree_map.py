@@ -204,13 +204,13 @@ class TreeMap:
     else:
       self._root._print_tree()
 
-  def keys(self)-> iter:
+  def keys(self) -> iter:
     node = self._key_list.begin()
     while node is not self._key_list.end():
       yield node()
       node = node.next()
 
-  def items(self)-> iter:
+  def items(self) -> iter:
     for key in self.keys():
       yield key, self.get(key)
 
@@ -263,7 +263,7 @@ class TreeMap:
       self._root = _AVLTreeNode(key)
       self._key_list.push_back(key)
       self._key2info[key] = self._KeyInfo(
-        value=value, key_list_node=self._key_list.rbegin())
+          value=value, key_list_node=self._key_list.rbegin())
 
     else:
       next_key = [None]
@@ -275,5 +275,5 @@ class TreeMap:
         next_node = self._key2info[next_key[0]].key_list_node
       self._key_list.insert_element(next_node, key)
 
-      self._key2info[key] = self._KeyInfo(
-        value=value, key_list_node=next_node.prev())
+      self._key2info[key] = self._KeyInfo(value=value,
+                                          key_list_node=next_node.prev())
