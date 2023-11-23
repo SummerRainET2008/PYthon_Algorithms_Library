@@ -50,13 +50,13 @@ class LinkedList:
 
   def pop_front(self):
     assert self._num > 0
-    value = self.begin()()
+    value = self.begin().get()
     self.remove(self.begin())
     return value
 
   def pop_back(self):
     assert self._num > 0
-    value = self.rbegin()()
+    value = self.rbegin().get()
     self.remove(self.rbegin())
     return value
 
