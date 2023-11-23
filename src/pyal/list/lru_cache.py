@@ -23,12 +23,12 @@ class LRUCache:
       return -1
 
     self._update_node(node)
-    return node().value
+    return node.get().value
 
   def put(self, key: int, value: int) -> None:
     node = self._key2node.get(key, None)
     if node is not None:
-      node.content = node().update(value)
+      node.content = node.get().update(value)
       self._update_node(node)
 
     else:

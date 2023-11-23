@@ -232,7 +232,7 @@ class TreeMap:
 
   def upper_bound(self, key):
     node = self.lower_bound(key)
-    if node is self.key_list_end() or key < node():
+    if node is self.key_list_end() or key < node.get():
       return node
 
     return node.next()

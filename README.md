@@ -44,8 +44,8 @@ Output
 ```
 key=-1 does not exist
 key=0, value=a
-lower_bound(key=1): node()=1
-upper_bound(key=1): node()=2
+lower_bound(key=1): node.get()=1
+upper_bound(key=1): node.get()=2
 min key: 0
 max key: 5
 ```

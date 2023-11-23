@@ -38,21 +38,21 @@ class LFUCache:
     if auxnode is None:
       return -1
 
-    auxnode().freq += 1
+    auxnode.get().freq += 1
     self._update_position(auxnode)
-    return auxnode().value
+    return auxnode.get().value
 
   def _update_position(self, auxnode):
-    main_node = auxnode().main_node
-    main_node().list.remove(auxnode)
+    main_node = auxnode.get().main_node
+    main_node.get().list.remove(auxnode)
 
     if main_node is self._list.begin() or \
-      main_node.prev().get().freq != auxnode().freq:
-      self._list.insert_element(main_node, MainValue(auxnode().freq))
+      main_node.prev().get().freq != auxnode.get().freq:
+      self._list.insert_element(main_node, MainValue(auxnode.get().freq))
 
     main_node = main_node.prev()
-    auxnode().main_node = main_node
-    main_node().list.insert(main_node().list.begin(), auxnode)
+    auxnode.get().main_node = main_node
+    main_node.get().list.insert(main_node.get().list.begin(), auxnode)
 
     if main_node.next().get().list.size() == 0:
       self._list.remove(main_node.next())
@@ -63,8 +63,8 @@ class LFUCache:
 
     auxnode = self._key2aux_node.get(key, None)
     if auxnode is not None:
-      auxnode().value = value
-      auxnode().freq += 1
+      auxnode.get().value = value
+      auxnode.get().freq += 1
       self._update_position(auxnode)
 
     else:
@@ -83,5 +83,5 @@ class LFUCache:
 
       last_mainnode = self._list.rbegin()
       auxnode_value = AuxValue(key, value, 1, last_mainnode)
-      last_mainnode().list.push_front(auxnode_value)
-      self._key2aux_node[key] = last_mainnode().list.begin()
+      last_mainnode.get().list.push_front(auxnode_value)
+      self._key2aux_node[key] = last_mainnode.get().list.begin()
