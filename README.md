@@ -31,13 +31,13 @@ def main():
 
   key = 1
   node = tree_map.lower_bound(key)
-  print(f"lower_bound({key=}): {node()=}")
+  print(f"lower_bound({key=}): {node.get()=}")
 
   node = tree_map.upper_bound(key)
-  print(f"upper_bound({key=}): {node()=}")
+  print(f"upper_bound({key=}): {node.get()=}")
 
-  print(f"min key: {tree_map.key_list_begin()()}")
-  print(f"max key: {tree_map.key_list_end().prev()()}")
+  print(f"min key: {tree_map.key_list_begin().get()}")
+  print(f"max key: {tree_map.key_list_end().prev().get()}")
 ```
 
 Output

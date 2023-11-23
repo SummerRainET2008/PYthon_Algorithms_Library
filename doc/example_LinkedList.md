@@ -1,10 +1,15 @@
 # ListNode:
 
-1. def __init__(self, content):
+1. `__init__(self, content)`
 
-1. def next(self):
+1. `next(self)`
 
-1. def prev(self):
+1. `prev(self)`
+
+1. `get()`
+
+1. `set(content)`
+
 
 # LinkedList
 
@@ -37,3 +42,4 @@
    Insert the node `node` before the `pos_node`.
        
 1. `remove(self, node: ListNode)`
+
