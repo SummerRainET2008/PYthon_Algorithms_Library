@@ -183,7 +183,7 @@ def make_list(shape: tuple, init_value):
   assert len(shape) > 0
 
   if len(shape) == 1:
-    return [init_value for _ in range(shape[0])]
+    return [init_value] * shape[0]
 
   return [make_list(shape[1:], init_value) for _ in range(shape[0])]
 
