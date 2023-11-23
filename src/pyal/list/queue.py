@@ -21,4 +21,4 @@ class Queue:
 
   def peek(self):
     assert self._data.size() > 0
-    return self._data.rbegin()()
+    return self._data.rbegin().get()

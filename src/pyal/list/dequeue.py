@@ -28,8 +28,8 @@ class Dequeue:
 
   def peek_back(self):
     assert self._data.size() > 0
-    return self._data.rbegin()()
+    return self._data.rbegin().get()
 
   def peek_front(self):
     assert self._data.size() > 0
-    return self._data.begin()()
+    return self._data.begin().get()

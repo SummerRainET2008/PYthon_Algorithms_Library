@@ -47,14 +47,14 @@ class LFUCache:
     main_node().list.remove(auxnode)
 
     if main_node is self._list.begin() or \
-      main_node.prev()().freq != auxnode().freq:
+      main_node.prev().get().freq != auxnode().freq:
       self._list.insert_element(main_node, MainValue(auxnode().freq))
 
     main_node = main_node.prev()
     auxnode().main_node = main_node
     main_node().list.insert(main_node().list.begin(), auxnode)
 
-    if main_node.next()().list.size() == 0:
+    if main_node.next().get().list.size() == 0:
       self._list.remove(main_node.next())
 
   def put(self, key: int, value: int) -> None:
@@ -69,7 +69,7 @@ class LFUCache:
 
     else:
       if self._get_size() == self._capacity:
-        last_mainvalue = self._list.rbegin()()
+        last_mainvalue = self._list.rbegin().get()
         last_key = last_mainvalue.list.pop_back().key
         del self._key2aux_node[last_key]
         if debug:
@@ -78,7 +78,7 @@ class LFUCache:
         if last_mainvalue.list.size() == 0:
           self._list.pop_back()
 
-      if not (self._list.size() > 0 and self._list.rbegin()().freq == 1):
+      if not (self._list.size() > 0 and self._list.rbegin().get().freq == 1):
         self._list.push_back(MainValue(1))
 
       last_mainnode = self._list.rbegin()
