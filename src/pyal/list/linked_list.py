@@ -60,6 +60,14 @@ class LinkedList:
     self.remove(self.rbegin())
     return value
 
+  def front(self):
+    assert self._num > 0
+    return self.begin().get()
+
+  def back(self):
+    assert self._num > 0
+    return self.rbegin().get()
+
   def begin(self):
     return self._fake_head._next
 
@@ -75,7 +83,13 @@ class LinkedList:
   def insert_element(self, pos_node: ListNode, e):
     self.insert(pos_node, ListNode(e))
 
+  def _check_node_validity(self, node):
+    assert node is not None
+    assert node not in [self._fake_head, self._fake_tail]
+
   def insert(self, pos_node: ListNode, node: ListNode):
+    self._check_node_validity(node)
+
     nd1, nd2, nd3 = pos_node._prev, node, pos_node
     nd1._next = nd2
     nd2._prev = nd1
@@ -84,6 +98,8 @@ class LinkedList:
     self._num += 1
 
   def remove(self, node: ListNode):
+    self._check_node_validity(node)
+
     nd1, nd2, nd3 = node._prev, node, node._next
     nd1._next = nd3
     nd3._prev = nd1
