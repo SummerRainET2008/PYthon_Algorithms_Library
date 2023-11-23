@@ -15,7 +15,10 @@ class ListNode:
   def prev(self):
     return self._prev
 
-  def __call__(self):
+  def set(self, content):
+    self._content = content
+
+  def get(self):
     return self._content
 
 
@@ -31,7 +34,7 @@ class LinkedList:
     ans = []
     node = self.begin()
     while node is not self.end():
-      ans.append(node())
+      ans.append(node.get())
       node = node.next()
 
     return ans

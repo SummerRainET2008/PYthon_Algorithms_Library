@@ -207,7 +207,7 @@ class TreeMap:
   def keys(self) -> iter:
     node = self._key_list.begin()
     while node is not self._key_list.end():
-      yield node()
+      yield node.get()
       node = node.next()
 
   def items(self) -> iter:

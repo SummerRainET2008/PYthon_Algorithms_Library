@@ -44,10 +44,10 @@ def test_lower_bound():
     if p == len(data) - 1:
       assert lower_node is tree.key_list_end()
     else:
-      assert lower_node() == data[p + 1]
+      assert lower_node.get() == data[p + 1]
 
     lower_node = tree.lower_bound(data[p] - 0.1)
-    assert lower_node() == data[p]
+    assert lower_node.get() == data[p]
 
   keys = list(tree.keys())
   assert keys == data
@@ -64,25 +64,25 @@ def test_one_remove():
   print(f"Removed 5")
   tree._print_tree()
   node = tree.lower_bound(5)
-  assert node() == 6
+  assert node.get() == 6
 
   tree.remove(1)
   print(f"Removed 1")
   tree._print_tree()
   node = tree.lower_bound(0.1)
-  assert node() == 2
+  assert node.get() == 2
 
   tree.remove(3)
   print(f"Removed 3")
   tree._print_tree()
   node = tree.lower_bound(3.1)
-  assert node() == 4
+  assert node.get() == 4
 
   tree.remove(4)
   print(f"Removed 4")
   tree._print_tree()
   node = tree.lower_bound(4.1)
-  assert node() == 6
+  assert node.get() == 6
 
 
 def test_many_remove():
@@ -100,4 +100,4 @@ def test_many_remove():
       if pos == len(data) - 1:
         assert lower_node == tree.key_list_end()
       else:
-        assert lower_node() == d + 1
+        assert lower_node.get() == d + 1
