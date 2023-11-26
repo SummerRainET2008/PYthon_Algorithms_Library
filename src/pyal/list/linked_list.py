@@ -30,6 +30,26 @@ class LinkedList:
     self._fake_tail._prev = self._fake_head
     self._num = 0
 
+  def get(self, index)-> ListNode:
+    if index < 0:
+      assert 1 <= -index <= self.size()
+      index += self.size()
+    assert 0 <= index < self.size()
+
+    if index == 0:
+      return self.begin()
+    elif index == self.size() - 1:
+      return self.rbegin()
+    else:
+      node = self.begin()
+      for _ in range(index):
+        node = node.next()
+      return node
+
+  def get_element(self, index):
+    return self.get(index).get()
+
+
   def to_list(self):
     ans = []
     node = self.begin()

@@ -12,6 +12,11 @@ def test_list():
   assert list.size() == 2
   assert list.to_list() == [1, 2]
 
+  list.push_back(3)
+  print("list:", list.to_list())
+  assert list.get_element(-1) == 3
+  assert list.get(1).get() == 2
+
 
 def test_insertion():
   list = LinkedList()
