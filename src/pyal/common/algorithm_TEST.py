@@ -135,6 +135,7 @@ def test_combination_with_duplicate():
   combs = list(combinations_with_duplicate(data, 2))
   assert len(combs) == 3
 
+
 def test_group_data():
   import random
 

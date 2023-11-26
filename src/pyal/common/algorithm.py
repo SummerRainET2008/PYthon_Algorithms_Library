@@ -374,7 +374,7 @@ def combinations_with_duplicate(data: list, k: int) -> iter:
   yield from _comb_helper(0, k)
 
 
-def group_data(data: list, sequential: bool=True)-> iter:
+def group_data(data: list, sequential: bool = True) -> iter:
   '''
   :param data: list
   :param sequential: if True then data is like [1, 1, 2, 2, 0, 0, 0]; otherwise
