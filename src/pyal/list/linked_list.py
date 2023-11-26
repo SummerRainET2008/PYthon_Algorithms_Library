@@ -49,6 +49,15 @@ class LinkedList:
   def get_element(self, index):
     return self.get(index).get()
 
+  def clear(self):
+    if self._num == 0:
+      return
+
+    self.get(0)._next = self.get(-1)._prev = None
+    self._fake_head._next = self._fake_tail
+    self._fake_tail._prev = self._fake_head
+    self._num = 0
+
 
   def to_list(self):
     ans = []

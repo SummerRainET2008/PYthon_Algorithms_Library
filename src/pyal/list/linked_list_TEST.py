@@ -17,6 +17,9 @@ def test_list():
   assert list.get_element(-1) == 3
   assert list.get(1).get() == 2
 
+  list.clear()
+  assert list.to_list() == []
+
 
 def test_insertion():
   list = LinkedList()
