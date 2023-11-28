@@ -1,4 +1,4 @@
-# PYthon Algorithms Library
+# PYthon Algorithms Library (pyal)
 
 Python does not have some useful or important data structures, like `linked list`, `tree map`, just like STL in C++. 
 This library, PYthon Algorithm Library (pyal), aims to provide a python counterpart of C++ STL.
@@ -56,7 +56,7 @@ max key: 5
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
     >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
-    >* DaynamicHeap [example](doc/example_DynamicHeap.md)
+    >* DynamicHeap [example](doc/example_DynamicHeap.md)
     >   * `update`, `deletion`: O(log N)
     >* MinHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
