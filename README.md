@@ -1,7 +1,7 @@
 # PYthon Algorithms Library
 
 Python does not have some useful or important data structures, like `linked list`, `tree map`, just like STL in C++. 
-This library, PYthon Algorithm Library (pyal), aims to provide a python version substitue of STL in C++.
+This library, PYthon Algorithm Library (pyal), aims to provide a python counterpart of C++ STL.
 
 # 1. Install 
  ```bash
