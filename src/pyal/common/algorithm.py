@@ -318,14 +318,14 @@ def prev_permutation(data: list):
   raise NotImplemented("todo")
 
 
-@functools.cache
+@functools.lru_cache
 def factorial(n: int):
   if n <= 1:
     return 1
   return n * factorial(n - 1)
 
 
-@functools.cache
+@functools.lru_cache
 def combinatorial_number(n, k):
   if k > n - k:
     return combinatorial_number(n, n - k)
@@ -337,7 +337,7 @@ def combinatorial_number(n, k):
   return ans
 
 
-@functools.cache
+@functools.lru_cache
 def permutation_number(n, k):
   return combinatorial_number(n, k) * factorial(k)
 
@@ -347,7 +347,7 @@ def combinations_with_duplicate(data: list, k: int) -> iter:
   :param data: should be sortable.
   :return:
   '''
-  @functools.cache
+  @functools.lru_cache
   def _comb_helper(start, _k):
     # print(f"debug: {start=} {_k=}")
     if not (len(sdata) - start >= _k):
