@@ -53,7 +53,7 @@ max key: 5
 
 # 3. Popular data structures and algorithms.
   Please check [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library) for all examples.
-  * Tree
+  * ### Tree
     >* TreeMap [example](doc/example_TreeMap.md)
     >   * ___Balanced___ binary search tree.
     >   * ___insert___ & ___delete___: O(log N)
@@ -62,7 +62,7 @@ max key: 5
     >   * ___update___ & ___deletion___: O(log N)
     >* MinHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
-  * list
+  * ### List
     > * LinkedList [example](doc/example_LinkedList.md)
     > * Queue [example](doc/example_Queue.md)
     > * Dequeue [example](doc/example_Deque.md)
@@ -71,15 +71,15 @@ max key: 5
     >   * ___get___ & ___set___: O(1)
     > * LFUCache [example](doc/example_LFUCache.md)
     >   * `get` & `set`: O(1) 
-  * String
+  * ### String
     >* search_KMP
     >* search_multipatterns
     >  * todo
-  * Graph
+  * ### Graph
     > * Graph
     > * Dijkstra
     > * topological_traversal
-  * Common useful functions
+  * ### Common useful functions
     > * `is_none_or_empty`
     > * `histogram_ascii`
     > * `is_sorted` 
