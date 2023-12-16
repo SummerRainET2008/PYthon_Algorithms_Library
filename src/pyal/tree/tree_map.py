@@ -2,7 +2,7 @@
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
 
-from pyal.list.linked_list import LinkedList
+from pyal.list.linked_list import LinkedList, ListNode
 
 
 class _AVLTreeNode:
@@ -217,13 +217,13 @@ class TreeMap:
     for key in self.keys():
       yield key, self.get(key)
 
-  def key_list_begin(self):
+  def key_list_begin(self)-> ListNode:
     return self._key_list.begin()
 
-  def key_list_end(self):
+  def key_list_end(self)-> ListNode:
     return self._key_list.end()
 
-  def lower_bound(self, key):  # return key_list node
+  def lower_bound(self, key)-> ListNode:  # return key_list node
     if self._root is None:
       return self.key_list_end()
 
@@ -233,7 +233,7 @@ class TreeMap:
 
     return self._key2info[node._key].key_list_node
 
-  def upper_bound(self, key):
+  def upper_bound(self, key)-> ListNode:
     node = self.lower_bound(key)
     if node is self.key_list_end() or key < node.get():
       return node
