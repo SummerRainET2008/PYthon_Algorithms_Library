@@ -17,6 +17,7 @@ def test_tree_construction():
       tree[d] = d
 
     assert tree.size() == 50
+    assert len(tree) == 50
 
     tree[0] = 100
     assert tree[0] == 100
@@ -29,6 +30,7 @@ def test_extreme_construction():
     tree[d] = d
   # tree._print_tree()
   assert tree.size() == max_size
+  assert len(tree) == max_size
 
 
 def test_lower_bound():
