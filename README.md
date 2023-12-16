@@ -55,9 +55,11 @@ max key: 5
   Please check [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library) for all examples.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
-    >   * balanced binary search tree, `insert` & `delete`: O(log N), `get`: O(1)
+    >   * ___Balanced___ binary search tree.
+    >   * ___insert___ & ___delete___: O(log N)
+    >   * ___get___:  O(1)
     >* DynamicHeap [example](doc/example_DynamicHeap.md)
-    >   * `update`, `deletion`: O(log N)
+    >   * ___update___ & ___deletion___: O(log N)
     >* MinHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
   * list
@@ -66,7 +68,7 @@ max key: 5
     > * Dequeue [example](doc/example_DisjointSet.md)
     > * Stack [example](doc/example_DisjointSet.md)
     > * LRUCache [example](doc/example_DisjointSet.md)
-    >   * `get` & `set`: O(1)
+    >   * ___get___ & ___set___: O(1)
     > * LFUCache [example](doc/example_DisjointSet.md)
     >   * `get` & `set`: O(1) 
   * String
