@@ -32,6 +32,9 @@ class DynamicHeap:
     item = self._data.pop()
     del self._id2pos[item.id]
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return len(self._data) - 1
 

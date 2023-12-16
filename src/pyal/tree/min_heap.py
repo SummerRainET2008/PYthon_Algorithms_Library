@@ -9,6 +9,9 @@ class MinHeap:
   def __init__(self):
     self._data = []
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return len(self._data)
 

@@ -20,5 +20,8 @@ class Stack:
     assert self._data.size() > 0
     return self._data.pop_back()
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return self._data.size()

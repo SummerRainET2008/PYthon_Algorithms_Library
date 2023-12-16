@@ -23,6 +23,9 @@ class Dequeue:
     assert self._data.size() > 0
     return self._data.pop_front()
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return self._data.size()
 

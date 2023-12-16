@@ -67,6 +67,9 @@ class LinkedList:
 
     return ans
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return self._num
 

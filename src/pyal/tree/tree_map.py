@@ -195,6 +195,9 @@ class TreeMap:
     self._KeyInfo = namedtuple("KeyInfo", ["value", "key_list_node"])
     self._key2info = {}  # {"key": KeyInfo}
 
+  def __len__(self):
+    return self.size()
+
   def size(self):
     return self._key_list.size()
 
