@@ -63,13 +63,13 @@ max key: 5
     >* MinHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
   * list
-    > * LinkedList [example](doc/example_DisjointSet.md)
-    > * Queue [example](doc/example_DisjointSet.md)
-    > * Dequeue [example](doc/example_DisjointSet.md)
-    > * Stack [example](doc/example_DisjointSet.md)
-    > * LRUCache [example](doc/example_DisjointSet.md)
+    > * LinkedList [example](doc/example_LinkedList.md)
+    > * Queue [example](doc/example_Queue.md)
+    > * Dequeue [example](doc/example_Deque.md)
+    > * Stack [example](doc/example_Stack.md)
+    > * LRUCache [example](doc/example_LRUCache.md)
     >   * ___get___ & ___set___: O(1)
-    > * LFUCache [example](doc/example_DisjointSet.md)
+    > * LFUCache [example](doc/example_LFUCache.md)
     >   * `get` & `set`: O(1) 
   * String
     >* search_KMP
