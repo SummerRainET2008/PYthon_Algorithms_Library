@@ -55,7 +55,7 @@ max key: 5
   Please check [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library) for all examples.
   * Tree
     >* TreeMap [example](doc/example_TreeMap.md)
-    >   * balanced AVL tree, `insert` & `delete`: O(log N), `get`: O(1)
+    >   * balanced binary search tree, `insert` & `delete`: O(log N), `get`: O(1)
     >* DynamicHeap [example](doc/example_DynamicHeap.md)
     >   * `update`, `deletion`: O(log N)
     >* MinHeap [example](doc/example_MinHeap.md)
