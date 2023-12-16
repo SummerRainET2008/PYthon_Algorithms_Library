@@ -1,45 +1,32 @@
 # ListNode:
 
-1. `__init__(self, content)`
-
-1. `next(self)`
-
-1. `prev(self)`
-
-1. `get()`
-
-1. `set(content)`
-
+1. ___\_\_init\_\_(self, content)___
+1. ___next(self)___-> ListNode
+1. ___prev(self)___-> ListNode
+1. ___get(self)___-> content
+1. ___set(self, content)___
 
 # LinkedList
 
-1. `__init__(self)`
-1. `to_list(self)`
-                   
-   Convert to a Python list.
-       
-1. `size(self)`
-1. `push_front(self, content)`
-1. `push_back(self, content)`
-1. `pop_front(self)`
-1. `pop_back(self)`
-1. `begin(self)`
-1. `end(self)`
-1. `rbegin(self)`
-                 
-   This is the first position in a reversed List, just like C++ STL does.
-       
-1. `rend(self)`
-                  
-   This is the dummy end node in a reversed List, just like C++ STL does.
-       
-1. `insert_element(self, pos_node: ListNode, e)`
-                  
-   Insert a new node with value `e` before the `pos_node`.
-       
-1. `insert(self, pos_node: ListNode, node: ListNode)`
-                  
-   Insert the node `node` before the `pos_node`.
-       
-1. `remove(self, node: ListNode)`
+1. ___\_\_init\_\_(self)___
+1. ___to_list(self)___
+   * Convert to a Python list.
+1. ___size(self)___
+   * You can also use pythonic function `len()`..
+1. ___push_front(self, content)___
+1. ___push_back(self, content)___
+1. ___pop_front(self)___
+1. ___pop_back(self)___
+1. ___begin(self)___-> ListNode
+1. ___end(self)___->ListNode
+1. ___rbegin(self)___
+   * This is the first position in a reversed List, just like C++ STL does.
+1. ___rend(self)___
+   * This is the dummy end node in a reversed List, just like C++ STL does.
+1. ___insert_element(self, pos_node: ListNode, e)___
+   * Insert a new node with value `e` before the `pos_node`.
+1. ___insert(self, pos_node: ListNode, node: ListNode)___
+   * Insert the node `node` before the `pos_node`.
+1. ___remove(self, node: ListNode)___
+2. ___index(self, content)___-> ListNode
 
