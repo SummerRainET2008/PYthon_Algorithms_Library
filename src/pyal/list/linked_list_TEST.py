@@ -20,6 +20,14 @@ def test_list():
   list.clear()
   assert list.to_list() == []
 
+  assert list.index(3) is None
+
+  list.push_back(1)
+  list.push_back(3)
+  list.push_back(5)
+  assert list.index(4) is None
+  assert list.index(5).prev().prev().get() == 1
+
 
 def test_insertion():
   list = LinkedList()

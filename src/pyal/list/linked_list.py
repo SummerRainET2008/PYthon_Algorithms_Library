@@ -136,3 +136,16 @@ class LinkedList:
     nd3._prev = nd1
     nd2._prev = nd2._next = None
     self._num -= 1
+
+  def index(self, content)-> ListNode:
+    '''
+    :param content:
+    :return: node if it exists else None
+    '''
+    node = self.begin()
+    while node is not self.end():
+      if node.get() == content:
+        return node
+      node = node.next()
+
+    return None
