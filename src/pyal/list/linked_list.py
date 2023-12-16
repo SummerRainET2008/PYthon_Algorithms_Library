@@ -137,7 +137,7 @@ class LinkedList:
     nd2._prev = nd2._next = None
     self._num -= 1
 
-  def index(self, content)-> ListNode:
+  def index(self, content) -> ListNode:
     '''
     :param content:
     :return: node if it exists else None

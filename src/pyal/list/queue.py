@@ -13,7 +13,9 @@ class Queue:
     self._data.push_front(data)
 
   def pop(self):
-    assert self._data.size() > 0
+    '''
+    :return: popped element
+    '''
     return self._data.pop_back()
 
   def __len__(self):
@@ -23,5 +25,4 @@ class Queue:
     return self._data.size()
 
   def peek(self):
-    assert self._data.size() > 0
-    return self._data.rbegin().get()
+    return self._data.back()
