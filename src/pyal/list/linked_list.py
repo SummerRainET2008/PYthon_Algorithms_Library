@@ -79,6 +79,19 @@ class LinkedList:
   def push_back(self, content):
     self.insert(self.end(), ListNode(content))
 
+  def extend(self, second_list):
+    '''
+    :param second_list: can be a python list, or LinkedList
+    :return:
+    '''
+    if isinstance(second_list, list):
+      for d in second_list:
+        self.push_back(d)
+    elif isinstance(second_list, LinkedList):
+      self.extend(second_list.to_list())
+    else:
+      assert False, "second_list must be [list, LinkedList]"
+
   def pop_front(self):
     assert self._num > 0
     value = self.begin().get()
@@ -149,3 +162,17 @@ class LinkedList:
       node = node.next()
 
     return None
+
+  def rindex(self, content)-> ListNode:
+    node = self.rbegin()
+    while node is not self.rend():
+      if node.get() == content:
+        return node
+      node = node.prev()
+
+    return None
+
+  def clone(self):
+    new_list = LinkedList()
+    new_list.extend(self)
+    return new_list

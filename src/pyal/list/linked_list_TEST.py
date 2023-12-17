@@ -27,7 +27,17 @@ def test_list():
   list.push_back(5)
   assert list.index(4) is None
   assert list.index(5).prev().prev().get() == 1
+  assert list.rindex(5).prev().prev().get() == 1
 
+  clone_list = list.clone()
+  clone_list.extend([2, 4, 6])
+  assert clone_list.to_list() == [1, 3, 5, 2, 4, 6]
+
+  second_list = LinkedList()
+  second_list.extend([2, 4, 6])
+  clone_list = list.clone()
+  clone_list.extend(second_list)
+  assert clone_list.to_list() == [1, 3, 5, 2, 4, 6]
 
 def test_insertion():
   list = LinkedList()
