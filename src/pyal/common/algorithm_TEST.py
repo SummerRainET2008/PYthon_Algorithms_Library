@@ -31,9 +31,12 @@ def test_is_sorted():
 
 
 def test_unique():
-  data = [1, 1, 1, 2, 2, 3]
-  data = unique(data)
-  assert data == [1, 2, 3]
+  data = [1, 1, 1, 2, 2, 3, 3, 3, 3, 3]
+  data1 = unique(data)
+  assert data1 == [1, 2, 3]
+
+  end = unique_in_place(data)
+  assert data[: end] == [1, 2, 3]
 
 
 def test_argmax():

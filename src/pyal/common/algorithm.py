@@ -1,12 +1,13 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
-import copy
 import sys
 import typing
 import functools
+import math
+from math import isinf
 
-INF = float("inf")
+INF = math.inf
 EPSILON = 1e-6
 
 
@@ -82,6 +83,25 @@ def unique(data: list):
         prev = d
 
   return list(run())
+
+def unique_in_place(data: list):
+  '''
+  1 2 3 4
+  1 1 2 3
+  :param data:
+  :return:
+  '''
+  p1 = 1
+  p2 = 1
+  while p2 < len(data):
+    if data[p2] != data[p1 - 1]:
+      data[p1] = data[p2]
+      p1 += 1
+      p2 += 1
+    else:
+      p2 += 1
+
+  return p1
 
 
 def cmp(a, b) -> int:
