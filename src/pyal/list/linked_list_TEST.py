@@ -38,6 +38,7 @@ def test_list():
   clone_list = list.clone()
   clone_list.extend(second_list)
   assert clone_list.to_list() == [1, 3, 5, 2, 4, 6]
+  assert clone_list.reversed().to_list() == [6, 4, 2, 5, 3, 1]
 
 def test_insertion():
   list = LinkedList()

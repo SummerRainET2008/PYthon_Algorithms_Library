@@ -176,3 +176,8 @@ class LinkedList:
     new_list = LinkedList()
     new_list.extend(self)
     return new_list
+
+  def reversed(self):
+    new_list = LinkedList()
+    new_list.extend(list(reversed(self.to_list())))
+    return new_list

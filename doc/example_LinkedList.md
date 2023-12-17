@@ -32,4 +32,5 @@
 1. ___rindex___(self, content)-> ListNode or None
 1. ___extend___(self, second_list: typing.Union[list, LinkedList])
 1. ___clone___(self)-> ListList
+1. ___reversed___(self)-> ListList
 
