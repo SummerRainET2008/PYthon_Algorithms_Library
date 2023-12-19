@@ -124,8 +124,8 @@ class LinkedList:
   def rend(self):
     return self._fake_head
 
-  def insert_element(self, pos_node: ListNode, e):
-    self.insert(pos_node, ListNode(e))
+  def insert_element(self, pos_node: ListNode, e)-> ListNode:
+    return self.insert(pos_node, ListNode(e))
 
   def _check_node_validity(self, node):
     assert node is not None
@@ -141,7 +141,9 @@ class LinkedList:
     nd3._prev = nd2
     self._num += 1
 
-  def remove(self, node: ListNode):
+    return node
+
+  def remove(self, node: ListNode)-> ListNode:
     self._check_node_validity(node)
 
     nd1, nd2, nd3 = node._prev, node, node._next
@@ -149,6 +151,8 @@ class LinkedList:
     nd3._prev = nd1
     nd2._prev = nd2._next = None
     self._num -= 1
+
+    return nd3
 
   def index(self, content) -> ListNode:
     '''

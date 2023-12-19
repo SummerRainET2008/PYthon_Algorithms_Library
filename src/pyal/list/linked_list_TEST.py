@@ -46,12 +46,15 @@ def test_insertion():
   list.push_back(2)
   list.push_back(3)
   list.push_back(4)
-  list.insert_element(list.begin(), 0)
+  node = list.insert_element(list.begin(), 0)
+  assert node.get() == 0
   list.insert(list.rbegin(), ListNode(100))
+  assert list.to_list() == [0, 1, 2, 3, 100, 4]
 
   iter = list.begin()
   iter = iter.next()
-  list.remove(iter)
+  next_node = list.remove(iter)
+  assert next_node.get() == 2
 
   data = []
   iter = list.begin()
@@ -61,10 +64,13 @@ def test_insertion():
 
   assert data == [0, 2, 3, 100, 4]
 
+  list.get(3).set(3.5)
+  assert list.get(3).get() == 3.5
+
   data = []
   iter = list.rbegin()
   while iter is not list.rend():
     data.append(iter.get())
     iter = iter.prev()
 
-  assert data == [0, 2, 3, 100, 4][::-1]
+  assert data == [0, 2, 3, 3.5, 4][::-1]

@@ -23,11 +23,11 @@
    * This is the first position in a reversed List, just like C++ STL does.
 1. ___rend(self)___-> ListNode
    * This is the dummy end node in a reversed List, just like C++ STL does.
-1. ___insert_element___(self, pos_node: ListNode, e)
+1. ___insert_element___(self, pos_node: ListNode, e)-> ListNode
    * Insert a new node with value `e` before the `pos_node`.
-1. ___insert___(self, pos_node: ListNode, node: ListNode)
+1. ___insert___(self, pos_node: ListNode, node: ListNode)-> ListNode
    * Insert the node `node` before the `pos_node`.
-1. ___remove___(self, node: ListNode)
+1. ___remove___(self, node: ListNode)-> ListNode
 1. ___index___(self, content)-> ListNode or None
 1. ___rindex___(self, content)-> ListNode or None
 1. ___extend___(self, second_list: typing.Union[list, LinkedList])
