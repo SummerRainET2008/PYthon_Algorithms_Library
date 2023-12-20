@@ -1,6 +1,7 @@
 '''
 Author: Tian Xia (TianXia0209@gmail.com)
 '''
+import copy
 import sys
 import typing
 import functools
@@ -199,11 +200,14 @@ def argmin(data: list):
   return opt_pos
 
 
-def make_list(shape: tuple, init_value):
+def make_list(shape: tuple, init_value: typing.Any):
   assert len(shape) > 0
 
   if len(shape) == 1:
-    return [init_value] * shape[0]
+    if init_value is None or isinstance(init_value, (int, float, str)):
+      return [init_value] * shape[0]
+    else:
+      return [copy.deepcopy(init_value) for _ in range(shape[0])]
 
   return [make_list(shape[1:], init_value) for _ in range(shape[0])]
 

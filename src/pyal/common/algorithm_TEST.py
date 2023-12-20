@@ -49,6 +49,11 @@ def test_make_list():
   data = make_list((2, 3, 4), None)
   assert len(data) == 2 and len(data[0]) == 3 and len(data[0][0]) == 4
 
+  data = make_list((3,), [])
+  data[0].append(1)
+  data[1].append(2)
+  assert data[0] == [1]
+  assert data[2] == []
 
 def test_the_kth_element():
   import random
