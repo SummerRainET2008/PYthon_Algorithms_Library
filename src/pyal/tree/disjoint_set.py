@@ -7,18 +7,18 @@ class DisjointSet:
     self._fathers = {}
     self._sizes = {}
 
-  def combine(self, a, b):
+  def combine(self, a, b)-> bool:
     c1 = self.get_cluster_id(a)
     c2 = self.get_cluster_id(b)
     if c1 == c2:
-      return
+      return False
 
     if self._sizes.get(c1, 1) > self._sizes.get(c2, 1):
-      self.combine(b, a)
-      return
+      return self.combine(b, a)
 
     self._fathers[c1] = c2
     self._sizes[c2] = self._sizes.get(c2, 1) + self._sizes.get(c1, 1)
+    return True
 
   def get_cluster_id(self, a):
     father = self._fathers.get(a, None)
