@@ -85,25 +85,16 @@ def unique(data: list):
 
   return list(run())
 
-def unique_in_place(data: list):
-  '''
-  1 2 3 4
-  1 1 2 3
-  :param data:
-  :return:
-  '''
-  p1 = 1
-  p2 = 1
-  while p2 < len(data):
-    if data[p2] != data[p1 - 1]:
-      data[p1] = data[p2]
-      p1 += 1
-      p2 += 1
-    else:
-      p2 += 1
+def unique_in_place(nums: list):
+  p1 = 0
+  for p2 in range(1, len(nums)):
+    if nums[p2] == nums[p1]:
+      continue
 
-  return p1
+    p1 += 1
+    nums[p1] = nums[p2]
 
+  return p1 + 1
 
 def cmp(a, b) -> int:
   return (a > b) - (a < b)
