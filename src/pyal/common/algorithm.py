@@ -11,6 +11,10 @@ from math import isinf
 INF = math.inf
 EPSILON = 1e-6
 
+def bit_not(m):
+  import ctypes
+  return ctypes.c_uint32(~m).value
+
 
 def is_none_or_empty(data) -> bool:
   '''This applies to any data type which has a __len__ method'''
