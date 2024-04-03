@@ -31,7 +31,7 @@ class Dijkstra:
         old_value = heap.get(edge.v2)
         new_value = dist + edge.weight
         if new_value < old_value:
-          heap.update(edge.v2, new_value)
+          heap.push(edge.v2, new_value)
           self._opt_in_edge[edge.v2] = edge.v1
 
   def get_min_distance(self, target_vertex: int):

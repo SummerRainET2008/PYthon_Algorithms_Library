@@ -22,7 +22,7 @@ def test_update():
 
   assert heap.top() == DynamicHeap.Item(1, 5)
 
-  heap.update(5, 4)
+  heap.push(5, 4)
   assert heap.top() == DynamicHeap.Item(5, 4)
 
   heap.remove(5)

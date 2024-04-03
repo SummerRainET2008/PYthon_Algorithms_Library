@@ -43,8 +43,9 @@ class DynamicHeap:
     return self._data[1]
 
   def push(self, id, value):
-    pos = self._id2pos.get(id, None)
-    assert pos is None, f"id={id} is existent. You could use self.update(...)."
+    if id in self._id2pos:
+      self._update(id, value)
+      return
 
     pos = len(self._data)
     self._assign_item(pos, self.Item(id=id, value=value))
@@ -91,7 +92,9 @@ class DynamicHeap:
     else:
       self._adjust_up_to_bottom(pos)
 
-  def update(self, id, value):
+  def _update(self, id, value):
+    assert id in self._id2pos
+
     pos = self._id2pos[id]
     old_item = self._data[pos]
     if value == old_item.value:
@@ -138,16 +141,16 @@ def case_1():
   heap.push(4, 2)
   heap.push(5, 90)
 
-  heap.update(0, 0)
-  heap.update(1, 25)
-  heap.update(5, 10)
+  heap.push(0, 0)
+  heap.push(1, 25)
+  heap.push(5, 10)
 
   heap.remove(4)
   heap.remove(3)
 
   heap.push(5, 20)
   heap.push(6, 0)
-  heap.update(0, 1)
+  heap.push(0, 1)
 
   while heap.size() > 2:
     print(heap.top())
@@ -156,7 +159,7 @@ def case_1():
 
   heap.push(7, 100)
   # heap.remove(5)
-  heap.update(1, 15)
+  heap.push(1, 15)
 
   while heap.size() > 0:
     print(heap.top())
