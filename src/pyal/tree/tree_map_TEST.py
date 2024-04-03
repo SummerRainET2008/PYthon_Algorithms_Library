@@ -62,6 +62,9 @@ def test_one_remove():
     tree[d] = d
   tree._print_tree()
 
+  assert tree.first_key() == min(data)
+  assert tree.last_key() == max(data)
+
   tree.remove(5)
   print(f"Removed 5")
   tree._print_tree()

@@ -191,6 +191,12 @@ class TreeMap:
     else:
       self._root._print_tree()
 
+  def first_key(self):
+    return self.key_list_begin().get()
+
+  def last_key(self):
+    return self.key_list_rbegin().get()
+
   def keys(self) -> iter:
     node = self._key_list.begin()
     while node is not self._key_list.end():
