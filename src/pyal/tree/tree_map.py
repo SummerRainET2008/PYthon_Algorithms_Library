@@ -78,7 +78,26 @@ class _AVLTreeNode:
       else:
         self._right = self._right._insert(key, next_key, False)
 
-    return _AVLTreeNode._reset_balance(self, from_left)
+    self._depth = 1 + max(self._get_depth(self._left),
+                          self._get_depth(self._right))
+
+    bf = self._get_balance_factor()
+    if bf > 1:
+      if key < self._left._key:
+        return self._right_rotate()
+      elif key > self._left._key:
+        self._left = self._left._left_rotate()
+        return self._right_rotate()
+
+    elif bf < -1:
+      if key < self._right._key:
+        self._right = self._right._right_rotate()
+        return self._left_rotate()
+      elif key > self._right._key:
+        return self._left_rotate()
+
+    else:
+      return self
 
   def _is_balanced(self, from_left: bool):
     bf = self._get_balance_factor()
@@ -87,50 +106,19 @@ class _AVLTreeNode:
   def _get_balance_factor(self):
     return self._get_depth(self._left) - self._get_depth(self._right)
 
-  @staticmethod
-  def _reset_node(node, from_left: bool):
-    node._reset_depth()
-    bf = node._get_balance_factor()
-
-    if bf in [-2, -3]:
-      return node._left_rotate()
-
-    elif bf == -1:
-      return node if not from_left else node._left_rotate()
-
-    elif bf == 0:
-      return node
-
-    elif bf == 1:
-      return node if from_left else node._right_rotate()
-
-    elif bf in [2, 3]:
-      return node._right_rotate()
-
-    else:
-      assert False
-
-  @staticmethod
-  def _reset_balance(node, from_left: bool):
-    if node is None:
-      return node
-
-    new_root = node
-    while True:
-      new_root = _AVLTreeNode._reset_node(new_root, from_left)
-      if new_root._is_balanced(from_left):
-        return new_root
-
   def _right_rotate(self):
-    bf = self._get_balance_factor()
-    # assert bf >= 2
-
     left = self._left
-    self._left = _AVLTreeNode._reset_balance(left._right, True)
-    self._reset_depth()
+    left_right = left._right
 
-    left._right = _AVLTreeNode._reset_balance(self, False)
-    left._reset_depth()
+    # Perform rotation
+    left._right = self
+    self._left = left_right
+
+    # Update heights
+    self._depth = 1 + max(self._get_depth(self._left),
+                          self._get_depth(self._right))
+    left._depth = 1 + max(self._get_depth(left._left),
+                          self._get_depth(left._right))
 
     return left
 
@@ -142,47 +130,69 @@ class _AVLTreeNode:
         self._right)) + 1
 
   def _left_rotate(self):
-    bf = self._get_balance_factor()
-    # assert bf <= -2
-
     right = self._right
-    self._right = _AVLTreeNode._reset_balance(right._left, False)
-    self._reset_depth()
+    right_left = right._left
 
-    right._left = _AVLTreeNode._reset_balance(self, True)
-    right._reset_depth()
+    # Perform rotation
+    right._left = self
+    self._right = right_left
+
+    # Update heights
+    self._depth = 1 + max(self._get_depth(self._left),
+                          self._get_depth(self._right))
+    right._depth = 1 + max(self._get_depth(right._left),
+                       self._get_depth(right._right))
 
     return right
 
-  def _remove(self, key, from_left: bool):
+  def _get_min_value_node(self):
+    if self._left is None:
+      return self
+    return self._left._get_min_value_node()
+
+  def getBalance(self, root):
+    if not root:
+      return 0
+
+    return self._get_depth(root._left) - self._get_depth(root._right)
+
+  def _remove(self, key):
     # Key must be existent
     if key < self._key:
-      self._left = self._left._remove(key, True)
-      return self
+      self._left = self._left._remove(key)
     elif key > self._key:
-      self._right = self._right._remove(key, False)
-      return self
+      self._right = self._right._remove(key)
 
     else:
-      if self._right is None:
-        return _AVLTreeNode._reset_balance(self._left, from_left)
-      elif self._left is None:
-        return _AVLTreeNode._reset_balance(self._right, from_left)
+      if self._left is None:
+        return self._right
+      elif self._right is None:
+        return self._left
+
       else:
-        left_right_list = []
-        node = self._left
-        while node is not None:
-          left_right_list.append(node)
-          node = node._right
+        min_node = self._right._get_min_value_node()
+        # todo
+        self._key = min_node._key
+        self._right = self._right._remove(min_node._key)
 
-        left_right_list[-1]._right = self._right._left
-        while left_right_list != []:
-          left_right_list[-1]._right = _AVLTreeNode._reset_balance(
-              left_right_list[-1]._right, False)
-          left_right_list.pop()
+    self._reset_depth()
+    bf  = self._get_balance_factor()
 
-        self._right._left = self._left
-        return _AVLTreeNode._reset_balance(self._right, from_left)
+    if bf > 1:
+      if self.getBalance(self._left) >= 0:
+        return self._right_rotate()
+      elif self.getBalance(self._left) < 0:
+        self._left = self._left._left_rotate()
+        return self._right_rotate()
+
+    elif bf < -1:
+      if self.getBalance(self._right) <= 0:
+        return self._left_rotate()
+      elif self.getBalance(self._right) > 0:
+        self._right = self._right._right_rotate()
+        return self._left_rotate()
+
+    return self
 
 
 class TreeMap:
@@ -257,7 +267,7 @@ class TreeMap:
 
     self._key_list.remove(info.key_list_node)
     del self._key2info[key]
-    self._root = self._root._remove(key, True)
+    self._root = self._root._remove(key)
 
   def __getitem__(self, key):
     return self._key2info[key].value

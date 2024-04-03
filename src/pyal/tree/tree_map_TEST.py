@@ -88,8 +88,8 @@ def test_one_remove():
 
 
 def test_many_remove():
-  for _ in range(10):
-    data = list(range(50))
+  for _ in range(100):
+    data = list(range(5000))
     data_random = data[::]
     random.shuffle(data_random)
     tree = TreeMap()
