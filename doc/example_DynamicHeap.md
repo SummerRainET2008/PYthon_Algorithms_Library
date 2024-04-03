@@ -17,10 +17,12 @@ heap related functions.
    
    Return the smallest value without removing it.   
 1. `push(self, id, value)`
+   
+   if `id` already exists, then it would do an update of `value` internally; otherwise it is a normal `push`.
+
 1. `pop(self)`
                    
    Return the smallest value and remove it.
     
 1. `get(self, id)`
 1. `remove(self, id)`
-1. `update(self, id, value)`
