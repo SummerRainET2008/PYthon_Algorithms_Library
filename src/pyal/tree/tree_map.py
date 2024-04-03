@@ -92,7 +92,7 @@ class _AVLTreeNode:
     node._reset_depth()
     bf = node._get_balance_factor()
 
-    if bf == -2:
+    if bf in [-2, -3]:
       return node._left_rotate()
 
     elif bf == -1:
@@ -104,7 +104,7 @@ class _AVLTreeNode:
     elif bf == 1:
       return node if from_left else node._right_rotate()
 
-    elif bf == 2:
+    elif bf in [2, 3]:
       return node._right_rotate()
 
     else:
@@ -222,6 +222,12 @@ class TreeMap:
 
   def key_list_end(self)-> ListNode:
     return self._key_list.end()
+
+  def key_list_rbegin(self)-> ListNode:
+    return self._key_list.rbegin()
+
+  def key_list_rend(self)-> ListNode:
+    return self._key_list.rend()
 
   def lower_bound(self, key)-> ListNode:  # return key_list node
     if self._root is None:
