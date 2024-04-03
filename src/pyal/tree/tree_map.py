@@ -77,8 +77,7 @@ class _AVLTreeNode:
       else:
         self._right = self._right._insert(key, next_key)
 
-    self._depth = 1 + max(self._get_depth(self._left),
-                          self._get_depth(self._right))
+    self._reset_depth()
 
     bf = self._get_balance_factor(self)
     if bf > 1:
@@ -102,11 +101,8 @@ class _AVLTreeNode:
     left._right = self
     self._left = left_right
 
-    # Update heights
-    self._depth = 1 + max(self._get_depth(self._left),
-                          self._get_depth(self._right))
-    left._depth = 1 + max(self._get_depth(left._left),
-                          self._get_depth(left._right))
+    self._reset_depth()
+    left._reset_depth()
 
     return left
 
@@ -121,15 +117,11 @@ class _AVLTreeNode:
     right = self._right
     right_left = right._left
 
-    # Perform rotation
     right._left = self
     self._right = right_left
 
-    # Update heights
-    self._depth = 1 + max(self._get_depth(self._left),
-                          self._get_depth(self._right))
-    right._depth = 1 + max(self._get_depth(right._left),
-                       self._get_depth(right._right))
+    self._reset_depth()
+    right._reset_depth()
 
     return right
 
@@ -141,7 +133,6 @@ class _AVLTreeNode:
   def _get_balance_factor(self, node):
     if node is None:
       return 0
-
     return self._get_depth(node._left) - self._get_depth(node._right)
 
   def _remove(self, key):
