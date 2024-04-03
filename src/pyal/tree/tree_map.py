@@ -82,18 +82,14 @@ class _AVLTreeNode:
 
     bf = self._get_balance_factor(self)
     if bf > 1:
-      if key < self._left._key:
-        return self._right_rotate()
-      elif key > self._left._key:
+      if key > self._left._key:
         self._left = self._left._left_rotate()
-        return self._right_rotate()
+      return self._right_rotate()
 
     elif bf < -1:
       if key < self._right._key:
         self._right = self._right._right_rotate()
-        return self._left_rotate()
-      elif key > self._right._key:
-        return self._left_rotate()
+      return self._left_rotate()
 
     else:
       return self
@@ -163,7 +159,6 @@ class _AVLTreeNode:
 
       else:
         min_node = self._right._get_min_value_node()
-        # todo
         self._key = min_node._key
         self._right = self._right._remove(min_node._key)
 
@@ -171,18 +166,14 @@ class _AVLTreeNode:
     bf = self._get_balance_factor(self)
 
     if bf > 1:
-      if self._get_balance_factor(self._left) >= 0:
-        return self._right_rotate()
-      elif self._get_balance_factor(self._left) < 0:
+      if self._get_balance_factor(self._left) < 0:
         self._left = self._left._left_rotate()
-        return self._right_rotate()
+      return self._right_rotate()
 
     elif bf < -1:
-      if self._get_balance_factor(self._right) <= 0:
-        return self._left_rotate()
-      elif self._get_balance_factor(self._right) > 0:
+      if self._get_balance_factor(self._right) > 0:
         self._right = self._right._right_rotate()
-        return self._left_rotate()
+      return self._left_rotate()
 
     return self
 
