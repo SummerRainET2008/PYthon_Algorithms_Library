@@ -104,11 +104,11 @@ class LinkedList:
     self.remove(self.rbegin())
     return value
 
-  def front(self):
+  def first_element(self):
     assert self._num > 0
     return self.begin().get()
 
-  def back(self):
+  def last_element(self):
     assert self._num > 0
     return self.rbegin().get()
 

@@ -25,4 +25,4 @@ class Queue:
     return self._data.size()
 
   def peek(self):
-    return self._data.back()
+    return self._data.last_element()
