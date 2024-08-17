@@ -6,7 +6,10 @@ from pyal.list.linked_list import LinkedList, ListNode
 
 
 class _AVLTreeNode:
-  def __init__(self, key: int):
+  def __init__(self, key):
+    '''
+    :param key: must be comparable
+    '''
     self._key = key
     self._left = None
     self._right = None
