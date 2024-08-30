@@ -8,10 +8,11 @@ from .list.stack import Stack
 from .tree.disjoint_set import DisjointSet
 from .tree.dynamic_heap import DynamicHeap
 from .tree.min_heap import MinHeap
+from .tree.max_heap import MaxHeap
 from .tree.tree_map import TreeMap
 from .graph.shortest_path import Dijkstra
 from .graph.graph import Graph
 from .graph.topological_traversal import topological_traversal
 from .string.search import search_KMP
 
-__version__ = "1.2.2"
+__version__ = "1.2.3"

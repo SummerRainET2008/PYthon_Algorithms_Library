@@ -60,7 +60,7 @@ max key: 5
     >   * ___get___:  O(1)
     >* DynamicHeap [example](doc/example_DynamicHeap.md)
     >   * ___update___ & ___deletion___: O(log N)
-    >* MinHeap [example](doc/example_MinHeap.md)
+    >* MinHeap, MaxHeap [example](doc/example_MinHeap.md)
     >* DisjointSet [example](doc/example_DisjointSet.md)
   * ### List
     > * LinkedList [example](doc/example_LinkedList.md)
