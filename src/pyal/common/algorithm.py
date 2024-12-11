@@ -4,7 +4,6 @@ Author: Tian Xia (TianXia0209@gmail.com)
 import copy
 import math
 from operator import itemgetter
-from pyal import is_none_or_empty
 import datetime
 import functools
 import importlib.util
