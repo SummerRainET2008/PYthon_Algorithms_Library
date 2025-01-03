@@ -142,6 +142,41 @@ def get_module_path(module_name) -> typing.Union[str, None]:
   return None
 
 
+def csv_file_read(file_name, max_num: int=-1)-> typing.Iterator:
+  import csv
+  assert file_name.endswith(".csv")
+  data_num = 0
+  with open(file_name, newline='') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+      data_num += 1
+      if max_num >= 0 and data_num > max_num:
+        break
+
+      if data_num > 0 and data_num % 10_000 == 0:
+        Logger.info(f"{file_name}: {data_num} lines have been loaded.")
+
+      yield row
+
+  Logger.info(f"{file_name}: #data={data_num:,}")
+
+def csv_file_write(data: typing.Iterator, field_names: list,
+                   file_name, remove_extra_keys=True, **kwargs):
+  assert file_name.endswith(".csv")
+  import csv
+  with open(file_name, 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=field_names)
+    writer.writeheader()
+    for d in data:
+      if remove_extra_keys:
+        d = d.copy()
+        for k in list(d.keys()):
+          if k not in field_names:
+            del d[k]
+
+      writer.writerow(d)
+
+
 def pydict_file_read(file_name, max_num: int = -1) -> typing.Iterator:
   assert file_name.endswith(".pydict")
   data_num = 0
