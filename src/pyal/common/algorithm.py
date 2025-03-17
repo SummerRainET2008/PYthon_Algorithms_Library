@@ -21,6 +21,9 @@ import threading
 import time
 import json
 import typing
+from typing import Union, List, Iterator
+from threading import Thread
+import queue
 
 INF = math.inf
 EPSILON = 1e-6
@@ -1015,3 +1018,39 @@ def group_data(data: list, sequential: bool = True) -> iter:
   else:
     data = sorted(data)
     yield from group_data(data, sequential=True)
+
+class Pool:
+  def __init__(self, processes=4):
+    self._worker_num = processes
+
+  def map(self, user_func, args_list: Union[List, Iterator])-> Iterator:
+    def _thread_worker(index_queue: queue.Queue, out_queue: queue.Queue):
+      while True:
+        data_id = index_queue.get()
+        if not (data_id < len(args_list)):
+          break
+
+        result = user_func(*args_list[data_id])
+        out_queue.put((data_id, result))
+
+    args_list = list(args_list)
+    index_queue = queue.Queue()
+    for idx in range(len(args_list) + self._worker_num):
+      index_queue.put(idx)
+
+    out_queue = queue.Queue()
+    threads = [Thread(target=_thread_worker, args=(index_queue, out_queue))
+               for _ in range(self._worker_num)]
+    for td in threads:
+      td.start()
+
+    results = {}
+    cur_index = 0
+    while cur_index < len(args_list):
+      index, resp = out_queue.get()
+      results[index] = resp
+
+      while cur_index in results:
+        yield results[cur_index]
+        del results[cur_index]
+        cur_index += 1
