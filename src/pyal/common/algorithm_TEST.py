@@ -2,7 +2,15 @@
 >> nosetests -v --nocapture test/tree_map_TEST.py
 '''
 
-from pyal.common.algorithm import *
+from .algorithm import *
+
+def test_read_file():
+  file_name = "/tmp/.test.txt"
+  with open(file_name, "w") as fout:
+    print("Hello World", file=fout)
+
+  assert read_file_content(file_name)  == "Hello World"
+  assert list(read_file_lines(file_name))[0] == "Hello World"
 
 
 def test_lower_bound():

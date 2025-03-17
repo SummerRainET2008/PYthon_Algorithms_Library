@@ -28,6 +28,14 @@ import queue
 INF = math.inf
 EPSILON = 1e-6
 
+def read_file_content(file_name: str, mode="r"):
+  with open(file_name, mode) as fin:
+    return fin.read().strip()
+
+def read_file_lines(file_name: str, mode="r"):
+  with open(file_name, mode) as fin:
+    for ln in fin:
+      yield ln.rstrip()
 
 def load_py_data(py_file):
   user_data = {}
