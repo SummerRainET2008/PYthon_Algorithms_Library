@@ -1031,7 +1031,26 @@ class Pool:
   def __init__(self, processes=4):
     self._worker_num = processes
 
+  def map1(self, user_func, args_list: Union[List, Iterator])-> Iterator:
+    '''
+    :param user_func:
+    :param args_list:
+    :return: fake stream-based results
+    '''
+    from concurrent.futures import ThreadPoolExecutor
+
+    with ThreadPoolExecutor(max_workers=self._worker_num) as executor:
+      results = executor.map(lambda args: user_func(*args), args_list)
+
+    for result in results:
+      yield result
+
   def map(self, user_func, args_list: Union[List, Iterator])-> Iterator:
+    '''
+    :param user_func:
+    :param args_list:
+    :return: stream-based results
+    '''
     def _thread_worker(index_queue: queue.Queue, out_queue: queue.Queue):
       while True:
         data_id = index_queue.get()
@@ -1062,3 +1081,6 @@ class Pool:
         yield results[cur_index]
         del results[cur_index]
         cur_index += 1
+
+    for td in threads:
+      td.join()

@@ -12,6 +12,18 @@ def test_read_file():
   assert read_file_content(file_name)  == "Hello World"
   assert list(read_file_lines(file_name))[0] == "Hello World"
 
+def test_thread_pool():
+  def f(m: int, n: int):
+    return m + n
+
+  pool = Pool(4)
+  result = 0
+  for r in pool.map1(f, ((m, m + m) for m in range(10))):
+    result += r
+    print(r, result)
+
+  assert result == 135
+
 
 def test_lower_bound():
   data = [0, 1, 1, 1, 2, 3, 4, 5]
