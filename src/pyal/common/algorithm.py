@@ -24,7 +24,9 @@ import typing
 from typing import Union, List, Iterator
 from threading import Thread
 import queue
+from logger import Logger
 
+logger = Logger("pyal.algorithm")
 INF = math.inf
 EPSILON = 1e-6
 
@@ -44,7 +46,7 @@ def load_py_data(py_file):
       exec(compile(fin.read(), "py_data", "exec"), user_data)
       return user_data
     except Exception as error:
-      Logger.error(error)
+      logger.error(error)
       return {}
 
 
@@ -165,11 +167,11 @@ def csv_file_read(file_name, max_num: int=-1)-> typing.Iterator:
         break
 
       if data_num > 0 and data_num % 10_000 == 0:
-        Logger.info(f"{file_name}: {data_num} lines have been loaded.")
+        logger.info(f"{file_name}: {data_num} lines have been loaded.")
 
       yield row
 
-  Logger.info(f"{file_name}: #data={data_num:,}")
+  logger.info(f"{file_name}: #data={data_num:,}")
 
 def csv_file_write(data: typing.Iterator, field_names: list,
                    file_name, remove_extra_keys=True, **kwargs):
@@ -196,7 +198,7 @@ def pydict_file_read(file_name, max_num: int = -1) -> typing.Iterator:
       if max_num >= 0 and idx + 1 > max_num:
         break
       if idx > 0 and idx % 10_000 == 0:
-        Logger.info(f"{file_name}: {idx} lines have been loaded.")
+        logger.info(f"{file_name}: {idx} lines have been loaded.")
 
       try:
         obj = eval(ln)
@@ -204,9 +206,9 @@ def pydict_file_read(file_name, max_num: int = -1) -> typing.Iterator:
         data_num += 1
 
       except Exception as err:
-        Logger.error(f"reading {file_name}:{idx + 1}: {err} '{ln}'")
+        logger.error(f"reading {file_name}:{idx + 1}: {err} '{ln}'")
 
-  Logger.info(f"{file_name}: #data={data_num:,}")
+  logger.info(f"{file_name}: #data={data_num:,}")
 
 
 def json_file_write(data, file_name: str):
@@ -236,16 +238,16 @@ def pydict_file_write(data: typing.Iterator, file_name: str, **kwargs) -> None:
       num += 1
       obj_str = str(obj)
       if "\n" in obj_str:
-        Logger.error(f"pydict_file_write: not '\\n' is allowed: '{obj_str}'")
+        logger.error(f"pydict_file_write: not '\\n' is allowed: '{obj_str}'")
       print(obj, file=fou)
       if kwargs.get("print_log", True) and num % 10_000 == 0:
-        Logger.info(f"{file_name} has been written {num} lines")
+        logger.info(f"{file_name} has been written {num} lines")
       if kwargs.get("flush_freq", None) is not None and \
         num % kwargs["flush_freq"] == 0:
         fou.flush()
 
   if kwargs.get("print_log", True):
-    Logger.info(f"{file_name} has been written {num} lines totally")
+    logger.info(f"{file_name} has been written {num} lines totally")
 
 
 def get_file_extension(file_name: str) -> str:
@@ -402,10 +404,10 @@ def command(cmd: str,
       account = os.getlogin()
     full_cmd = f"ssh -oStrictHostKeyChecking=no {account}@{server_ip} '{cmd}'"
 
-  Logger.debug(f"[start] executing '{full_cmd}'")
+  logger.debug(f"[start] executing '{full_cmd}'")
   result = subprocess.run(full_cmd, shell=True, capture_output=capture_output)
   status = "OK" if result.returncode == 0 else "fail"
-  Logger.debug(f"[finish - {status}] '{full_cmd}'")
+  logger.debug(f"[finish - {status}] '{full_cmd}'")
 
   if capture_output:
     return result.returncode, result.stdout.decode(), result.stderr.decode()
@@ -418,13 +420,13 @@ def to_utf8(line) -> typing.Union[str, None]:
     try:
       return line.encode("utf8")
     except:
-      Logger.warn("in toUtf8(...)")
+      logger.warn("in toUtf8(...)")
       return None
 
   elif type(line) is bytes:
     return line
 
-  Logger.error("wrong type in toUtf8(...)")
+  logger.error("wrong type in toUtf8(...)")
   return None
 
 
@@ -438,7 +440,7 @@ def print_flush(cont, stream=None) -> None:
 def display_server_info():
   host_name = socket.gethostname()
   ip = get_server_ip()
-  Logger.info(f"server information: {host_name}({ip}), process: {os.getpid()}")
+  logger.info(f"server information: {host_name}({ip}), process: {os.getpid()}")
 
 
 def get_available_gpus(server_ip=None, account=None):
@@ -449,10 +451,10 @@ def get_available_gpus(server_ip=None, account=None):
                   capture_output=True,
                   server_ip=server_ip,
                   account=account)[1]
-    Logger.debug(f"server: {server_ip}, {res}")
+    logger.debug(f"server: {server_ip}, {res}")
     res = res.split("\n")
     if len(res) <= 6:
-      Logger.error(
+      logger.error(
           f"can not obtain correct nvidia-smi result: {' '.join(res)}")
       yield -1
       return
@@ -474,10 +476,10 @@ def get_available_gpus(server_ip=None, account=None):
     ret = timeout(find_all, [], 30)
     return ret
   except TimeoutError:
-    Logger.error(f"Time out: get_available_gpus({server_ip})")
+    logger.error(f"Time out: get_available_gpus({server_ip})")
     return []
   except Exception as error:
-    Logger.error(error)
+    logger.error(error)
     return []
 
 
@@ -524,74 +526,16 @@ class Timer(object):
 
   def __enter__(self) -> None:
     if not is_none_or_empty(self.title):
-      Logger.info(f"Timer starts:\t '{self.title}'")
+      logger.info(f"Timer starts:\t '{self.title}'")
     self.__starting = time.time()
     return self
 
   def __exit__(self, *args) -> None:
     self.__duration = time.time() - self.__starting
     if not is_none_or_empty(self.title):
-      Logger.info(
+      logger.info(
           f"Timer finishes:\t '{self.title}', takes {to_readable_time(self.duration)} "
           f"seconds.")
-
-
-class Logger:
-  '''
-  debug=0, info=1, warning=2, error=3
-  '''
-  level = 1
-  outstream = sys.stdout
-  country_city = ""  #"Asia/Chongqing", 'America/Los_Angeles'
-
-  @staticmethod
-  def reset_outstream(out_file: str, append=False):
-    mode = "a" if append else "w"
-    Logger.outstream = open(out_file, mode)
-
-  @staticmethod
-  def set_level(level):
-    Logger.level = level
-
-  @staticmethod
-  def is_debug():
-    return Logger.level <= 0
-
-  @staticmethod
-  def debug(*args):
-    if Logger.level <= 0:
-      print(get_log_time(country_city=Logger.country_city),
-            "DEBUG:",
-            *args,
-            file=Logger.outstream)
-      Logger.outstream.flush()
-
-  @staticmethod
-  def info(*args):
-    if Logger.level <= 1:
-      print(get_log_time(country_city=Logger.country_city),
-            "INFO:",
-            *args,
-            file=Logger.outstream)
-      Logger.outstream.flush()
-
-  @staticmethod
-  def warn(*args):
-    if Logger.level <= 2:
-      print(get_log_time(country_city=Logger.country_city),
-            "WARN:",
-            *args,
-            file=Logger.outstream)
-      Logger.outstream.flush()
-
-  @staticmethod
-  def error(*args):
-    if Logger.level <= 3:
-      print(get_log_time(country_city=Logger.country_city),
-            "ERR:",
-            *args,
-            file=Logger.outstream)
-      Logger.outstream.flush()
 
 
 def bit_not(m):
