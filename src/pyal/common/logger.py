@@ -1,5 +1,5 @@
-from algorithm import is_none_or_empty, get_log_time
 import pytz
+import datetime
 
 class Logger:
   DEBUG = 0
@@ -13,12 +13,38 @@ class Logger:
     else:
       self._class_name = class_or_str.__class__.__name__
 
-    if is_none_or_empty(time_zone):
+    if time_zone == None or time_zone == "":
       self.set_US_pacific_time()
     else:
       self._country_city = time_zone
 
     self._level = 1
+
+  def _strdate(self, timezone: str, now):
+    city = timezone.split("/")[-1]
+    ts = now.strftime("%Y-%m-%d_%Ih-%Mm-%Ss_%p")
+    return f"{city}_{ts}"
+
+  def _get_log_time(self, utc_time: bool = True, country_city: str = None):
+    '''
+    utc_time: if False, return local time(server);
+              if True, return local time(city).
+    country_city : When utc_time is true,  if city is None, return UTC(0).
+                  See pytz/__init__.py:510, all_timezones
+
+    e.g., SF time is UTC+8, then get_log_time(True) - 8 = get_log_time(False)
+    '''
+    if utc_time:
+      if country_city == None or country_city == "":
+        now = datetime.datetime.utcnow()
+        return self._strdate("utc", now)
+      else:
+        now = datetime.datetime.now(pytz.timezone(country_city))
+        return self._strdate(country_city, now)
+
+    else:
+      now = datetime.datetime.now()
+      return self._strdate("local", now)
 
   def set_timezone_or_city(self, timezone_or_city):
     self._country_city = timezone_or_city
@@ -42,7 +68,7 @@ class Logger:
     return self._level <= 0
 
   def _title(self):
-    return f"{self._class_name} {get_log_time(country_city=self._country_city)}"
+    return f"{self._class_name} {self._get_log_time(country_city=self._country_city)}"
 
   def debug(self, *args):
     if self._level <= self.DEBUG:

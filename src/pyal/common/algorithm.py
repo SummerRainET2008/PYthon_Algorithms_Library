@@ -24,7 +24,7 @@ import typing
 from typing import Union, List, Iterator
 from threading import Thread
 import queue
-from logger import Logger
+from .logger import Logger
 
 logger = Logger("pyal.algorithm")
 INF = math.inf
@@ -311,51 +311,6 @@ def to_readable_time(seconds: float):
     result.append(f"{n_sec:.3f} s")
 
   return " ".join(result)
-
-
-def __strdate(timezone: str, now):
-  city = timezone.split("/")[-1]
-  ts = now.strftime("%Y-%m-%d_%Ih-%Mm-%Ss_%p")
-  return f"{city}_{ts}"
-
-
-def get_log_time(utc_time: bool = True, country_city: str = None):
-  '''
-  utc_time: if False, return local time(server);
-            if True, return local time(city).
-  country_city : When utc_time is true,  if city is None, return UTC(0).
-                See pytz/__init__.py:510, all_timezones
-
-  e.g., SF time is UTC+8, then get_log_time(True) - 8 = get_log_time(False)
-  '''
-  if utc_time:
-    if is_none_or_empty(country_city):
-      now = datetime.datetime.utcnow()
-      return __strdate("utc", now)
-    else:
-      now = datetime.datetime.now(pytz.timezone(country_city))
-      return __strdate(country_city, now)
-
-  else:
-    now = datetime.datetime.now()
-    return __strdate("local", now)
-
-
-def get_future_time(days=0,
-                    hours=0,
-                    minutes=0,
-                    seconds=0,
-                    country_city: str = None):
-  delta = datetime.timedelta(days=days,
-                             hours=hours,
-                             minutes=minutes,
-                             seconds=seconds)
-  if is_none_or_empty(country_city):
-    finished_time = datetime.datetime.now() + delta
-    return __strdate("utc", finished_time)
-  else:
-    finished_time = datetime.datetime.now(pytz.timezone(country_city)) + delta
-    return __strdate(country_city, finished_time)
 
 
 @functools.lru_cache

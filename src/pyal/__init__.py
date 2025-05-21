@@ -14,5 +14,6 @@ from .graph.shortest_path import Dijkstra
 from .graph.graph import Graph
 from .graph.topological_traversal import topological_traversal
 from .string.search import search_KMP
+from .common.logger import Logger
 
-__version__ = "1.3.5"
+__version__ = "1.3.6"
