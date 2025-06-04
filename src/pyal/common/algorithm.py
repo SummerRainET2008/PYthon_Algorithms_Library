@@ -983,3 +983,31 @@ class Pool:
 
     for td in threads:
       td.join()
+
+def binary_search(data, begin, end, user_func):
+  '''
+  Applying "user_func" to each element to obtain [False, False, False, False, True, True]
+  This function returns the first position of 'True'.
+  If no 'True' is found, return 'end'
+
+  Example 1: find an element in a sorted data, we can set 
+  user_func = lambda x: x < target
+  then check the equality.
+
+  Example 2: find a lower_bound of target, we can set
+  user_func = lambda x: x < target
+
+  Example 3: find a upper_bound of target, we can set
+  user_func = lambda x: x <= target
+  '''
+  f, t = begin, end
+  while f < t: 
+    m = (f + t) // 2
+    #print(f, t, m, user_func(data[m]))
+    if user_func(data[m]):
+      f = m + 1
+    else:
+      t = m
+
+  return f   
+

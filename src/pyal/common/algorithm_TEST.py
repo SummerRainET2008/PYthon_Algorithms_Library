@@ -175,3 +175,49 @@ def test_group_data():
   groups = list(group_data(data, sequential=False))
   groups = sorted(groups)
   assert groups == [(0, 3), (1, 2), (2, 2)]
+
+def test_binary_search():  
+  def find(sorted_data: list, target):
+    size = len(sorted_data)
+    pos = binary_search(sorted_data, 0, size, lambda x: x < target)
+    if pos < size and sorted_data[pos] == target:
+      return pos 
+    return size 
+
+  def lower_bound(sorted_data: list, target):
+    size = len(sorted_data)
+    pos = binary_search(sorted_data, 0, size, lambda x: x < target)
+    return pos
+
+  def upper_bound(sorted_data: list, target):
+    size = len(sorted_data)
+    pos = binary_search(sorted_data, 0, size, lambda x: x <= target)
+    return pos
+
+  def test():
+    import random
+
+    data = sorted([random.randrange(10, 100) for _ in range(1000)])
+    targets = [random.randrange(0, 150) for _ in range(1000)]
+
+    for target in targets:
+      pos = find(data, target)
+      if pos == len(data):
+        assert target not in data
+      else:    
+        assert target in data
+
+      pos = lower_bound(data, target)
+      for index, d in enumerate(data):
+        if target <= d:
+          assert pos <= index
+          break
+
+      pos = upper_bound(data, target)
+      for index, d in enumerate(data):
+        if target < d:
+          assert pos <= index
+          break
+
+  test()
+
