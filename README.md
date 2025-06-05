@@ -1,11 +1,11 @@
 # PYthon Algorithms Library (pyal)
 
-Python does not have some useful or important data structures, like `linked list`, `tree map`, just like STL in C++. 
+Unlike the STL in C++ which provides misceneous data structures, Python does not have some important structures, like `linked list`, `tree map`. 
 This library aims to provide a python counterpart of C++ STL.
 
 # 1. Install 
  ```bash
- python3 -m pip install Python-Algorithm-pyal
+ python3 -m pip install Python-Algorithm-pyal psutil pytz
  ```
 
 # 2. Examples [github](https://github.com/SummerRainET2008/PYthon_Algorithms_Library)
@@ -80,6 +80,9 @@ max key: 5
     > * Dijkstra
     > * topological_traversal
   * ### Common useful functions
+    > * `binary_search`
+    >   * General binary search, binary_search(sorted_data, from, to, user_func), where user_func(x) defines the data as [False, ..., False, True, ..., True], this function returns the first position of 'True'.
+    >   * Many practical problems can be converted to this form, like binary_find, lower_bound, upper_bound, peak position in a rotated sorted array and etc.
     > * `is_none_or_empty`
     > * `histogram_ascii`
     > * `is_sorted` 
