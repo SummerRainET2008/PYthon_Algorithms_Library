@@ -986,9 +986,9 @@ class Pool:
 
 def binary_search(data, begin, end, user_func):
   '''
-  Applying "user_func" to each element to obtain [False, False, False, False, True, True]
-  This function returns the first position of 'True'.
-  If no 'True' is found, return 'end'
+  Applying "user_func" to each element to obtain [True, True, False, False, False, False]
+  This function returns the first position of 'False'.
+  If no 'False' is found, return 'end'
 
   Example 1: find an element in a sorted data, we can set 
   user_func = lambda x: x < target
