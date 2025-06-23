@@ -10,10 +10,11 @@ from .tree.dynamic_heap import DynamicHeap
 from .tree.min_heap import MinHeap
 from .tree.max_heap import MaxHeap
 from .tree.tree_map import TreeMap
+from .tree.binary_indexed_tree import BinaryIndexedTree
 from .graph.shortest_path import Dijkstra
 from .graph.graph import Graph
 from .graph.topological_traversal import topological_traversal
 from .string.search import search_KMP
 from .common.logger import Logger
 
-__version__ = "1.3.9"
+__version__ = "1.4.0"
