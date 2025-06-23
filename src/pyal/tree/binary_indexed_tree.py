@@ -12,9 +12,9 @@ To summarey, a node with index m, stores numbers from [m - lowest_bit(m) + 1, m]
 '''
 
 class _BinaryIndexedTree:
-  def __init__(self, max_size):
-    self._tree = [0] * (max_size + 1)
-    self._max_index = max_size
+  def __init__(self, max_index):
+    self._tree = [0] * (max_index + 1)
+    self._max_index = max_index
 
   def update(self, index: int, delta):
     assert 1 <= index <= self._max_index
@@ -47,13 +47,18 @@ class _BinaryIndexedTree:
 
     return self._range_sum(end - 1) - self._range_sum(begin - 1)
 
-
 class BinaryIndexedTree:
-  def __init__(self, max_size):
-    self._tree = _BinaryIndexedTree(max_size)
+  def __init__(self, size):
+    self._tree = _BinaryIndexedTree(size)
+    self._size = size
 
   def update(self, index: int, delta):
     self._tree.update(index + 1, delta)
 
-  def range_sum(self, begin, end):
+  def range_sum(self, begin, end=None):
+    if begin is None:
+      begin = 0
+    if end is None:
+      end = self._size
+
     return self._tree.range_sum(begin + 1, end + 1)

@@ -21,3 +21,6 @@ def test_basic():
 
   bin_tree.update(3, -4)
   assert bin_tree.range_sum(3, 4) == 0
+  assert bin_tree.range_sum(0) == 16
+  assert bin_tree.range_sum(None, 4) == 16
+  assert bin_tree.range_sum(None, None) == 16
