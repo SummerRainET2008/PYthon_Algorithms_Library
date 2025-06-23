@@ -60,5 +60,10 @@ class BinaryIndexedTree:
       begin = 0
     if end is None:
       end = self._size
+    if not (end - begin > 0):
+      return 0
+    if not 0 <= begin < self._size:
+      return 0
+
 
     return self._tree.range_sum(begin + 1, end + 1)
