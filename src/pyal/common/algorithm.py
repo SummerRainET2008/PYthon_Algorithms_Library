@@ -58,7 +58,7 @@ def load_module_from_full_path(path):
   return foo
 
 
-def async_function(f):
+def start_threading(f):
   '''
   Decorator
   :param f: a function with no return value.
