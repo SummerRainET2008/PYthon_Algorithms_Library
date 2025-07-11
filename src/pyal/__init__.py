@@ -19,4 +19,4 @@ from .graph.topological_traversal import topological_traversal
 from .string.search import search_KMP
 from .common.logger import Logger
 
-__version__ = "1.4.1"
+__version__ = "1.4.2"
