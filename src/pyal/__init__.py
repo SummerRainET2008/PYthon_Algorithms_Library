@@ -9,6 +9,8 @@ from .tree.disjoint_set import DisjointSet
 from .tree.dynamic_heap import DynamicHeap
 from .tree.min_heap import MinHeap
 from .tree.max_heap import MaxHeap
+from .tree.min_queue import MinQueue
+from .tree.max_queue import MaxQueue
 from .tree.tree_map import TreeMap
 from .tree.binary_indexed_tree import BinaryIndexedTree
 from .graph.shortest_path import Dijkstra
