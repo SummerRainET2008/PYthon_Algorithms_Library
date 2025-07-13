@@ -30,6 +30,10 @@ logger = Logger("pyal.algorithm")
 INF = math.inf
 EPSILON = 1e-6
 
+def yield_from(data_iter, terminal_value=None):
+  yield from data_iter
+  yield terminal_value
+
 def read_file_content(file_name: str, mode="r"):
   with open(file_name, mode) as fin:
     return fin.read().strip()
